@@ -1,0 +1,71 @@
+<html>
+
+<head>
+	<title>Update Purchase Order</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+</head>
+
+
+<body>
+    <div>
+        <table border="1" cellpadding="5"> 
+            <caption> <b>Editing Purchase Order:<b> </caption>
+            <!-- Access data tuple passed from app.py -->
+            {% if data %}
+                <thead>
+                    <tr>
+                        <!-- Iterate through each key in the first entry to get the column name -->
+                        {% for key in data[0].keys() %}
+
+                        <!-- Create a <th> tag with the key inside of it, this will be our header row -->
+                        <th scope="col" data-field="{{ key }}" data-filter-control="input">{{ key }}</th>
+                        
+                        <!-- End of this for loop -->
+                        {% endfor %} 
+                    </tr>
+
+                <tbody>
+                    <!-- Now, iterate through every item in data -->
+                    {% for item in data %}
+                    <tr>
+                        <!-- Then iterate through every key in the current item dictionary -->
+                        {% for key in item.keys() %}
+                        
+                        <!-- Create a <td> element with the value of that key in it -->
+                        <td>{{item[key]}}</td> {% endfor %} 
+                    </tr> 
+                    {% endfor %} 
+            {% endif %} 
+        </table>
+<br>
+<br>
+<div id="update" style="display: block">
+    <form id="UpdatePurchaseOrder" action="/Update_Purchase_Order/{{data[0].purchase_order_id}}" method="POST">
+      <legend><strong>Update Purchase Order</strong></legend>
+      <br>
+        <fieldset class="fields">
+            <input type="hidden" value="{{data[0].purchase_order_id}}" class="form-control" id="purchase_order_id" name="purchase_order_id" required>
+            <label> purchase date </label> <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="{{data[0].purchase_date}}" required>
+            <br>
+            <br>
+            <label> delivery date </label> <input type="date" class="form-control" id="delivery_date" name="delivery_date" value="{{data[0].delivery_date}}" required>
+            <br>
+            <br>
+            <label> vendor id </label><select class="form-control" id="vendor_id" name="vendor_id" placeholder="" required>
+                {% for vendor in vendors %}
+                        <!-- If the value iterated homeworld matches the value of the homeworld of person currently Editing, pre-select that option -->
+                        {% if vendor['vendor_id'] == data[0].vendor_id %}
+                            <option value="{{ vendor['vendor_id'] }}" selected> {{vendor['name']}}</option>
+                        {% else %}
+                            <option value="{{ vendor['vendor_id'] }}"> {{vendor['name']}}</option> 
+                        {% endif %}
+                <!-- End of this for loop -->
+                {% endfor %} 
+			</select>
+        </fieldset>
+        <br>
+        <input type="submit" value="Update Purchase Order" name="Update_Purchase_Order" class="btn btn-primary" style="margin:.5rem;">
+        <a href='/Purchase_Orders'><input class="btn" type="button" value="Cancel"></a>
+    </form>
+
+</html>

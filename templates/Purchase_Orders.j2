@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Customers</title>
+    <title>Purchase Orders</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
     <script language="JavaScript">
 	function showform(dowhat) {
@@ -35,16 +35,16 @@
             document.getElementById('delete').style.display = 'none';
 		}
 	}
-	function newCustomer() {
+	function newPurchaseOrder() {
 		showform('insert');
 	}
-	function updateCustomer(pid) {
+	function updatePurchaseOrder(pid) {
 		showform('update');
 	}
-    function deletePerson(pid) {
+    function deletePurchaseOrder(pid) {
 		showform('delete');
 	}
-	function browseCustomers() {
+	function browsePurchaseOrders() {
 		showform('browse');
 	}
 	function showAll() {
@@ -53,13 +53,13 @@
 	</script>
 </head>
 
-<body onload="browseCustomers()>
-<h1>Customers</h1>
+<body onload="browsePurchaseOrders()>
+<h1>Purchase Orders</h1>
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
 <a href="Products.html">Products</a> | 
-<a href="Purchase_Orders.html">Purchase Orders</a> | 
+<a href="/Purchase_Orders">Purchase Orders</a> | 
 <a href="Vendors.html">Vendors</a> | 
 <a href="Sales.html">Sales</a> | 
 <a href="Purchase_Orders_Products.html">Purchase Orders to Products</a> | 
@@ -68,7 +68,7 @@
 <br>
 <br>
 <div id="browse" style="display: block">
-    <p><strong>Browse Customers</strong></p>
+    <p><strong>Browse Purchase Orders</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
 <thead>  
@@ -96,8 +96,8 @@
     <td>{{item[key]}}</td>
     {% endfor %}
     <!-- Create our edit/delete buttons -->
-	<td><a href="Update_Customer/{{item.customer_id}}" class="btn btn-default">Edit</a></td>
-	<td><a href="Delete_Customer/{{item.customer_id}}" class="btn btn-default">Delete</a></td>
+	<td><a href="Update_Purchase_Order/{{item.purchase_order_id}}" class="btn btn-default">Edit</a></td>
+	<td><a href="Delete_Purchase_Order/{{item.purchase_order_id}}" class="btn btn-default">Delete</a></td>
 </tr>
     {% endfor %}
 {% endif %} 
@@ -107,34 +107,27 @@
 </div> <!-- browse -->
 
 <div id="insert" style="display: block">
-    <form id="addCustomer" action="/Customers" method="post">
-        <legend><strong>Add Customer</strong></legend>
+    <form id="addPurchaseOrder" action="/Purchase_Orders" method="post">
+        <legend><strong>Add Purchase Order</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> first name </label> <input type="text" name="first_name" placeholder="" required>
+            <label> purchase date </label> <input type="date" name="purchase_date" placeholder="" required>
             <br>
             <br>
-            <label> last name </label> <input type="text" name="last_name" placeholder="" required>
+            <label> delivery date </label> <input type="date" name="delivery_date" placeholder="" required>
             <br>
             <br>
-            <label> email </label> <input type="text" name="email" placeholder="" required>
-            <br>
-            <br>
-            <label> address </label> <input type="text" name="address" placeholder="" required>
-            <br>
-            <br>
-            <label> phone number </label> <input type="text" name="phone_number" placeholder="" required>
-            <br>
-            <br>
-            <label> first purchase </label> <input type="date" name="first_purchase" placeholder="" required>
-            <br>
-            <br>
-            <label> last purchase </label> <input type="date" name="last_purchase" placeholder="" required>
+            <label> vendor id </label><select class="form-control" id="vendor_id" name="vendor_id" placeholder="" required>
+                {% for vendor in vendors %}
+                    <option value="{{ vendor['vendor_id'] }}"> {{vendor['name']}}</option> 
+                <!-- End of this for loop -->
+                {% endfor %} 
+			</select>
           </fieldset>
           <br>
-          <input class="btn" type="submit" id="addCustomer" value="Add Customer" name="Add_Customer">
-          <input class="btn" type="button" value="Cancel" onClick="browseCustomers()">
-	  </form> <!--add new customer-->
+          <input class="btn" type="submit" id="addPurchaseOrder" value="Add Purchase Order" name="Add_Purchase_Order">
+          <input class="btn" type="button" value="Cancel" onClick="browsePurchaseOrders()">
+	  </form> <!--add new purchase order-->
 </div><!-- insert -->
 <br>
 <br>

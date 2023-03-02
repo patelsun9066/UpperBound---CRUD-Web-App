@@ -36,7 +36,7 @@ WHERE vendor_id = :vendor_ID_selected_from_update_form;
 -------------------------------------------------
 
 -- Get all Purchase_Orders 
-Select * from Purchase_Orders;
+SELECT purchase_order_id, purchase_date, delivery_date, Vendors.name as vendor_name FROM Purchase_Orders INNER JOIN Vendors ON Purchase_Orders.vendor_id = Vendors.vendor_id;
 
 -- Insert into Purchase Orders Table
 INSERT INTO Purchase_Orders (purchase_date, delivery_date, vendor_id)
@@ -71,7 +71,9 @@ WHERE product_id = :product_ID_selected_from_update_form;
 -----------------------------
 
 -- Get All Sales 
-Select * From Sales; 
+
+SELECT sale_id, sale_date, shipping_date, Customers.first_name + '' + Customers.last_name as customer_full_name, Status_Codes.status_code_id as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id INNER JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id;
+
 
 -- Insert into Sales Table
 INSERT INTO Sales (sale_date, shipping_date, customer_id, status_code_id)

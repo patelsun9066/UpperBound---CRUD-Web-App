@@ -1,0 +1,67 @@
+form {
+    font-family: sans-serif;
+    font-size: 1em;;
+    color: darkblue;
+}
+
+body { 
+  color:darkblue;
+  background-color:lightblue;
+  font-family: sans-serif;
+  font-size: 1em;;
+  margin: 1%;;
+  padding: 2%;;
+}
+
+th {
+    border: 2.5px solid darkblue;
+    font-family: sans-serif;
+}
+tr {
+    border: 2.5px solid darkblue;
+    font-family: sans-serif;
+}
+td {
+    border: 2.5px solid darkblue;
+    font-family: sans-serif;
+}
+
+form {
+    font-family: sans-serif;
+    font-size: 1em;;
+    color: darkblue;
+}
+
+input {
+    font-family: sans-serif;
+    font-size: 1em;;
+    color: darkblue;
+}
+
+select {
+    font-family: sans-serif;
+    font-size: 1em;
+    color: darkblue;
+}
+
+fieldset {
+    border: 2.5px solid darkblue;
+}
+  legend {
+    font-family: sans-serif;
+    font-size: 1em;
+  }
+label {
+    font-family: sans-serif;
+    font-size: 1em;
+}
+
+h1 {
+    font-family: sans-serif;
+}
+
+a {
+    font-family: sans-serif;
+    font-size: 1em; 
+    color: darkblue;
+}

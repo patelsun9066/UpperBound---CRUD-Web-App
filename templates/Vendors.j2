@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Customers</title>
+    <title>Vendors</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
     <script language="JavaScript">
 	function showform(dowhat) {
@@ -18,11 +18,6 @@
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'block';
             document.getElementById('delete').style.display = 'none';
-        } else if(dowhat == 'delete') {
-			document.getElementById('browse').style.display = 'none';
-			document.getElementById('insert').style.display = 'none';
-			document.getElementById('edit').style.display = 'none';
-			document.getElementById('delete').style.display = 'block';
 		} else if(dowhat == 'all') {
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'block';
@@ -35,16 +30,13 @@
             document.getElementById('delete').style.display = 'none';
 		}
 	}
-	function newCustomer() {
+	function newVendor() {
 		showform('insert');
 	}
-	function updateCustomer(pid) {
+	function updateVendor(pid) {
 		showform('update');
 	}
-    function deletePerson(pid) {
-		showform('delete');
-	}
-	function browseCustomers() {
+	function browseVendors() {
 		showform('browse');
 	}
 	function showAll() {
@@ -53,14 +45,14 @@
 	</script>
 </head>
 
-<body onload="browseCustomers()>
+<body onload="browseVendors()>
 <h1>Customers</h1>
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
 <a href="Products.html">Products</a> | 
 <a href="Purchase_Orders.html">Purchase Orders</a> | 
-<a href="Vendors.html">Vendors</a> | 
+<a href="/Vendors">Vendors</a> | 
 <a href="Sales.html">Sales</a> | 
 <a href="Purchase_Orders_Products.html">Purchase Orders to Products</a> | 
 <a href="Products_Sales.html">Products to Sales</a> | 
@@ -68,7 +60,7 @@
 <br>
 <br>
 <div id="browse" style="display: block">
-    <p><strong>Browse Customers</strong></p>
+    <p><strong>Browse Vendors</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
 <thead>  
@@ -96,8 +88,7 @@
     <td>{{item[key]}}</td>
     {% endfor %}
     <!-- Create our edit/delete buttons -->
-	<td><a href="Update_Customer/{{item.customer_id}}" class="btn btn-default">Edit</a></td>
-	<td><a href="Delete_Customer/{{item.customer_id}}" class="btn btn-default">Delete</a></td>
+	<td><a href="Update_Vendor/{{item.vendor_id}}" class="btn btn-default">Edit</a></td>
 </tr>
     {% endfor %}
 {% endif %} 
@@ -107,34 +98,28 @@
 </div> <!-- browse -->
 
 <div id="insert" style="display: block">
-    <form id="addCustomer" action="/Customers" method="post">
-        <legend><strong>Add Customer</strong></legend>
+    <form id="addVendor" action="/Vendors" method="post">
+        <legend><strong>Add Vendor</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> first name </label> <input type="text" name="first_name" placeholder="" required>
-            <br>
-            <br>
-            <label> last name </label> <input type="text" name="last_name" placeholder="" required>
-            <br>
-            <br>
-            <label> email </label> <input type="text" name="email" placeholder="" required>
+            <label> name </label> <input type="text" name="name" placeholder="" required>
             <br>
             <br>
             <label> address </label> <input type="text" name="address" placeholder="" required>
             <br>
             <br>
-            <label> phone number </label> <input type="text" name="phone_number" placeholder="" required>
+            <label> contact name </label> <input type="text" name="contact_name" placeholder="" required>
             <br>
             <br>
-            <label> first purchase </label> <input type="date" name="first_purchase" placeholder="" required>
+            <label> contact phone number </label> <input type="text" name="contact_phone_number" placeholder="" required>
             <br>
             <br>
-            <label> last purchase </label> <input type="date" name="last_purchase" placeholder="" required>
+            <label> contact email </label> <input type="text" name="contact_email" placeholder="" required>
           </fieldset>
           <br>
-          <input class="btn" type="submit" id="addCustomer" value="Add Customer" name="Add_Customer">
-          <input class="btn" type="button" value="Cancel" onClick="browseCustomers()">
-	  </form> <!--add new customer-->
+          <input class="btn" type="submit" id="addVendor" value="Add Vendor" name="Add_Vendor">
+          <input class="btn" type="button" value="Cancel" onClick="browseVendors()">
+	  </form> <!--add new vendor-->
 </div><!-- insert -->
 <br>
 <br>
