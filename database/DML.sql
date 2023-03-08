@@ -95,11 +95,14 @@ INSERT INTO Products_Sales (product_id, sale_id, quantity_sold, unit_selling_pri
 VALUES (:product_idInputDropdown, :sale_idInputDropDown, :quantity_soldInput, :unit_selling_priceInput, :total_priceInput);
 
 -- Update Products_Sales Table
-SELECT product_sale_id, Products.name as product_name, Sales.sale_date as sale_date, quantity_sold, unit_selling_price, total_price FROM Products_Sales INNER JOIN Products ON Products_Sales.product_id = Products.product_id INNER JOIN Sales ON Products_Sales.sale_id = Sales.sale_id
+SELECT product_sale_id, Products.product_id as product_id, Sales.sale_id as sale_id, Products.name as product_name, Sales.sale_date as sale_date, quantity_sold, unit_selling_price, total_price FROM Products_Sales INNER JOIN Products ON Products_Sales.product_id = Products.product_id INNER JOIN Sales ON Products_Sales.sale_id = Sales.sale_id
 WHERE product_sale_id = :product_sale_ID_selected_from_products_sales_page;
 
 Update Products_Sales SET product_id = :product_idInputDropdown, sale_id = :sale_idInputDropdown, quantity_sold = :quantity_soldInput, unit_selling_price = :unit_selling_priceInput, total_price = :total_priceInput
 WHERE product_sale_id = :product_sale_ID_selected_from_update_form;
+
+-- Delete From a Products_Sales Table 
+DELETE FROM Products_Sales WHERE product_sale_id = :product_sale_id_selected_from_browse_products_sales_page;
 
 -----------------------------------------------
 

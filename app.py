@@ -559,10 +559,99 @@ def delete_purchase_order_product(purchase_order_product_id):
 
 # ---------------------------------------------------------------------------------------------------------------------------------------#
 # Products to Sales routes
-@app.route('/Products_Sales')
-def product_sales_page():
-    return render_template("Products_Sales.j2")
+@app.route('/Products_Sales', methods=["POST", "GET"])
+def Products_Sales_page():
 
+    if request.method == "GET":
+        
+        query = "SELECT product_sale_id, Products.name as product_name, Sales.sale_date as sale_date, quantity_sold, unit_selling_price, total_price FROM Products_Sales INNER JOIN Products ON Products_Sales.product_id = Products.product_id INNER JOIN Sales ON Products_Sales.sale_id = Sales.sale_id;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        data = cur.fetchall()
+
+        query2 = "SELECT product_id, name FROM Products;"
+        cur = mysql.connection.cursor()
+        cur.execute(query2)
+        products = cur.fetchall()
+
+        query3 = "SELECT sale_id, sale_date FROM Sales;"
+        cur = mysql.connection.cursor()
+        cur.execute(query3)
+        sales = cur.fetchall()
+
+        return render_template("Products_Sales.j2", data=data, products=products, sales=sales)
+
+    if request.method == "POST":
+
+        if request.form.get("Add_Product_Sale"):
+
+            product_id = request.form["product_id"]
+            sale_id = request.form["sale_id"]
+            quantity_sold = request.form["quantity_sold"]
+            unit_selling_price = request.form["unit_selling_price"]
+            total_price = request.form["total_price"]
+
+            # no null inputs allowed
+            query = "INSERT INTO Products_Sales (product_id, sale_id, quantity_sold, unit_selling_price, total_price) VALUES (%s, %s, %s, %s, %s);"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (product_id, sale_id, quantity_sold, unit_selling_price, total_price))
+            mysql.connection.commit()      
+
+            # redirect back
+            return redirect("/Products_Sales")
+
+
+# route for update functionality, updating the attributes of a sale in Sales
+
+@app.route("/Update_Product_Sale/<int:product_sale_id>", methods=["POST", "GET"])
+def update_product_sale(product_sale_id):
+    if request.method == "GET":
+        
+        query = "SELECT product_sale_id, Products.product_id as product_id, Sales.sale_id as sale_id, Products.name as product_name, Sales.sale_date as sale_date, quantity_sold, unit_selling_price, total_price FROM Products_Sales INNER JOIN Products ON Products_Sales.product_id = Products.product_id INNER JOIN Sales ON Products_Sales.sale_id = Sales.sale_id WHERE product_sale_id = %s;" % (product_sale_id)
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        data = cur.fetchall()
+
+        query2 = "SELECT product_id, name FROM Products;"
+        cur = mysql.connection.cursor()
+        cur.execute(query2)
+        products = cur.fetchall()
+
+        query3 = "SELECT sale_id, sale_date FROM Sales;"
+        cur = mysql.connection.cursor()
+        cur.execute(query3)
+        sales = cur.fetchall()
+
+        return render_template("Update_Product_Sale.j2", data=data, products=products, sales=sales)
+
+    if request.method == "POST":
+
+        if request.form.get("Update_Product_Sale"):
+            # grab user form inputs
+            product_sale_id = request.form["product_sale_id"]
+            product_id = request.form["product_id"]
+            sale_id = request.form["sale_id"]
+            quantity_sold = request.form["quantity_sold"]
+            unit_selling_price = request.form["unit_selling_price"]
+            total_price = request.form["total_price"]
+
+            query = "Update Products_Sales SET product_id = %s, sale_id = %s, quantity_sold = %s, unit_selling_price = %s, total_price = %s WHERE product_sale_id = %s;"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (product_id, sale_id, quantity_sold, unit_selling_price, total_price, product_sale_id))
+            mysql.connection.commit()
+
+            # redirect back
+            return redirect("/Products_Sales")
+
+@app.route("/Delete_Product_Sale/<int:product_sale_id>")
+def delete_product_sale(product_sale_id):
+
+    query = "DELETE FROM Products_Sales WHERE product_sale_id = '%s'"
+    cur = mysql.connection.cursor()
+    cur.execute(query, (product_sale_id,))
+    mysql.connection.commit()
+
+    return redirect("/Products_Sales")
 
 # Listener
 
