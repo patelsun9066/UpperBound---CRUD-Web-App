@@ -1,0 +1,156 @@
+<html>
+<!-- 
+# Citation for the following jinja template file:
+# Date: 3/02/2023
+# Adapted from / Based on: Flask Starter App guide shared from course learning materials.
+# Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
+ -->
+<head>
+    <title>Purchase Orders to Products</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+</head>
+
+<body>
+    <h1>Purchase Orders to Products</h1>
+
+[<a href="/">Page Navigator:</a> | 
+<a href="/">Home</a> | 
+<a href="/Customers">Customers</a> | 
+<a href="/Products">Products</a> | 
+<a href="/Purchase_Orders">Purchase Orders</a> | 
+<a href="/Vendors">Vendors</a> | 
+<a href="/Sales">Sales</a> | 
+<a href="/Purchase_Orders_Products">Purchase Orders to Products</a> | 
+<a href="/Products_Sales">Products to Sales</a> | 
+<a href="/Status_Codes">Status Codes</a> ]
+    
+<div id="browse" style="display: block">
+<p><strong>Browse Connections</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>purchase order product id</th>
+    <th>purchase order id</th>
+    <th>product id</th>
+    <th>purchase quantity</th>
+    <th>purchase price</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <th><a href="#">Delete</a></th>
+    <td align="right">1</td>
+    <td>3</td>
+    <td >1</td>
+    <td >100</td>
+    <td >250.00</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <th><a href="#">Delete</a></th>
+    <td align="right">2</td>
+    <td>1</td>
+    <td >2</td>
+    <td >1000</td>
+    <td >30.00</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <th><a href="#">Delete</a></th>
+    <td align="right">3</td>
+    <td>2</td>
+    <td >3</td>
+    <td >10000</td>
+    <td >5.00</td>
+  </tr>
+</table>
+<p></p>
+<br>
+</div> <!-- browse -->
+
+<div id="insert" style="display: block">
+    <form id="addConnection">
+        <legend><strong>Add Connection</strong></legend>
+        <br>
+          <fieldset class="fields">
+            <label> purchase order id </label> 
+            <select id="purchase order id" name="purchase order id">
+              <option value=""></option>
+              <option value="1">1 : 2021-01-01</option>
+              <option value="2">2 : 2021-02-01</option>
+              <option value="3">3 : 2021-03-01</option>
+            </select>
+            <br>
+            <br>
+            <label> product id </label> 
+            <select id="product id" name="product id">
+              <option value=""></option>
+              <option value="1">1 : Product A</option>
+              <option value="2">2 : Product B</option>
+              <option value="3">3 : Product C</option>
+            </select>
+            <br>
+            <br>
+            <label> purchase quantity</label> <input type="number" name="purchase quantity">
+            <br>
+            <br>
+            <label> purchase price</label> <input type="number" name="purchase price">
+          </fieldset>
+          <br>
+        <input class="btn" type="submit" id="addConnection" value="Add Connection">
+        <input class="btn" type="button" value="Cancel">
+	</form> <!--add new connection-->
+</div><!-- insert -->
+<br>
+<br>
+<div id="update" style="display: block">
+  <form id="updateConnection">
+      <legend><strong>Update Connection</strong></legend>
+      <br>
+        <fieldset class="fields">
+          <label>purchase order product id: 1</label> 
+          <br>
+          <br>
+          <label> purchase order id </label> 
+          <select id="purchase order id" name="purchase order id">
+            <option value="1">1 : 2021-01-01</option>
+            <option value="2">2 : 2021-02-01</option>
+            <option value="3" selected>3 : 2021-03-01</option>
+          </select>
+          <br>
+          <br>
+          <label> product id </label> <select id="product id" name="product id">
+            <option value="1" selected>1 : Product A</option>
+            <option value="2">2 : Product B</option>
+            <option value="3">3 : Product C</option>
+          </select>
+          <br>
+          <br>
+          <label> purchase quantity</label> <input type="number" name="purchase quantity" value="100">
+          <br>
+          <br>
+          <label> purchase price</label> <input type="number" name="purchase price" value="250.00">
+        </fieldset>
+        <br>
+    <input class="btn" type="submit" id="UpdateSaveConnection" value="Save Updates to Connection">
+    <input class="btn" type="button" value="Cancel" >
+  </form> 
+</div><!-- update -->
+<br>
+<br>
+<div id="delete" style="display: block">
+  <form id="deleteConnection">
+      <legend><strong>Delete Connection</strong></legend>
+      <br>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>purchase order product id:</label> 1
+    </fieldset>
+    <br>
+    <input class="btn" type="submit" id="DeleteConnection" value="Delete Connection">
+    <input class="btn" type="button" value="Cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</body>
+</html>

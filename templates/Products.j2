@@ -6,7 +6,7 @@
 # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
  -->
 <head>
-    <title>Purchase Orders</title>
+    <title>Products</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
     <script language="JavaScript">
 	function showform(dowhat) {
@@ -24,11 +24,6 @@
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'block';
             document.getElementById('delete').style.display = 'none';
-        } else if(dowhat == 'delete') {
-			document.getElementById('browse').style.display = 'none';
-			document.getElementById('insert').style.display = 'none';
-			document.getElementById('edit').style.display = 'none';
-			document.getElementById('delete').style.display = 'block';
 		} else if(dowhat == 'all') {
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'block';
@@ -41,16 +36,13 @@
             document.getElementById('delete').style.display = 'none';
 		}
 	}
-	function newPurchaseOrder() {
+	function newProduct() {
 		showform('insert');
 	}
-	function updatePurchaseOrder(pid) {
+	function updateProduct(pid) {
 		showform('update');
 	}
-    function deletePurchaseOrder(pid) {
-		showform('delete');
-	}
-	function browsePurchaseOrders() {
+	function browseProducts() {
 		showform('browse');
 	}
 	function showAll() {
@@ -59,8 +51,8 @@
 	</script>
 </head>
 
-<body onload="browsePurchaseOrders()>
-<h1>Purchase Orders</h1>
+<body onload="browseProducts()>
+<h1>Products</h1>
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
@@ -74,7 +66,7 @@
 <br>
 <br>
 <div id="browse" style="display: block">
-    <p><strong>Browse Purchase Orders</strong></p>
+    <p><strong>Browse Products</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
 <thead>  
@@ -102,8 +94,7 @@
     <td>{{item[key]}}</td>
     {% endfor %}
     <!-- Create our edit/delete buttons -->
-	<td><a href="Update_Purchase_Order/{{item.purchase_order_id}}" class="btn btn-default">Edit</a></td>
-	<td><a href="Delete_Purchase_Order/{{item.purchase_order_id}}" class="btn btn-default">Delete</a></td>
+	<td><a href="Update_Product/{{item.product_id}}" class="btn btn-default">Edit</a></td>
 </tr>
     {% endfor %}
 {% endif %} 
@@ -113,27 +104,25 @@
 </div> <!-- browse -->
 
 <div id="insert" style="display: block">
-    <form id="addPurchaseOrder" action="/Purchase_Orders" method="post">
-        <legend><strong>Add Purchase Order</strong></legend>
+    <form id="addProduct" action="/Products" method="post">
+        <legend><strong>Add Product</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> purchase date </label> <input type="date" name="purchase_date" placeholder="" required>
+            <label> name </label> <input type="text" name="name" placeholder="" required>
             <br>
             <br>
-            <label> delivery date </label> <input type="date" name="delivery_date" placeholder="" required>
+            <label> description </label> <input type="text" name="description" placeholder="" required>
             <br>
             <br>
-            <label> vendor id </label><select class="form-control" id="vendor_id" name="vendor_id" placeholder="" required>
-                {% for vendor in vendors %}
-                    <option value="{{ vendor['vendor_id'] }}"> {{vendor['name']}}</option> 
-                <!-- End of this for loop -->
-                {% endfor %} 
-			</select>
+            <label> quantity_in_stock </label> <input type="number" name="quantity_in_stock" placeholder="" required>
+            <br>
+            <br>
+            <label> total_dollar_value </label> <input type="number" name="total_dollar_value" placeholder="" required>
           </fieldset>
           <br>
-          <input class="btn" type="submit" id="addPurchaseOrder" value="Add Purchase Order" name="Add_Purchase_Order">
-          <input class="btn" type="button" value="Cancel" onClick="browsePurchaseOrders()">
-	  </form> <!--add new purchase order-->
+          <input class="btn" type="submit" id="addProduct" value="Add Product" name="Add_Product">
+          <input class="btn" type="button" value="Cancel" onClick="browseProducts()">
+	  </form> <!--add new vendor-->
 </div><!-- insert -->
 <br>
 <br>

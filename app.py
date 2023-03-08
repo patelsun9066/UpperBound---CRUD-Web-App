@@ -1,3 +1,9 @@
+# Citation for the following app.py file:
+# Date: 3/02/2023
+# Adapted from / Based on: Flask Starter App guide shared from course learning materials.
+# Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
+
+
 from flask import Flask, render_template, json, redirect
 import os
 import database.db_connector as db
@@ -226,7 +232,7 @@ def Purchase_Orders_page():
 def update_purchase_order(purchase_order_id):
     if request.method == "GET":
         # mySQL query to grab the info of the purchase order with our passed id
-        query = "SELECT purchase_order_id, purchase_date, delivery_date, vendor_id from Purchase_Orders WHERE purchase_order_id = %s;" % (purchase_order_id)
+        query = "SELECT purchase_order_id, purchase_date, delivery_date, Vendors.vendor_id as vendor_id, Vendors.name as vendor_name FROM Purchase_Orders INNER JOIN Vendors ON Purchase_Orders.vendor_id = Vendors.vendor_id WHERE purchase_order_id = %s;" % (purchase_order_id)
         cur = mysql.connection.cursor()
         cur.execute(query)
         data = cur.fetchall()
@@ -270,6 +276,181 @@ def delete_purchase_order(purchase_order_id):
     return redirect("/Purchase_Orders")
 
 # ---------------------------------------------------------------------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------------------------------------------------------------------#
+# Products Page Routes - Browse, Add, and Update
+
+@app.route('/Products', methods=["POST", "GET"])
+def Products_page():
+
+    if request.method == "GET":
+        # SQL query to grab all Products in Products Database
+        query = "SELECT * FROM Products;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        data = cur.fetchall()
+        return render_template("Products.j2", data=data)
+
+
+    if request.method == "POST":
+        # Fires off if the user presses Add Product Button
+        if request.form.get("Add_Product"):
+            # grab customer form inputs
+            name = request.form["name"]
+            description = request.form["description"]
+            quantity_in_stock = request.form["quantity_in_stock"]
+            total_dollar_value = request.form["total_dollar_value"]
+
+            # no null inputs allowed
+            query = "INSERT INTO Products (name, description, quantity_in_stock, total_dollar_value) VALUES (%s, %s, %s, %s);"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (name, description, quantity_in_stock, total_dollar_value))
+            mysql.connection.commit()      
+
+            # redirect back to products page
+            return redirect("/Products")
+
+
+# route for update functionality, updating the attributes of a product in Products
+
+@app.route("/Update_Product/<int:product_id>", methods=["POST", "GET"])
+def update_product(product_id):
+    if request.method == "GET":
+        # mySQL query to grab the info of the product with our passed id
+        query = "Select product_id, name, description, quantity_in_stock, total_dollar_value from Products WHERE product_id = %s;" % (product_id)
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        data = cur.fetchall()
+
+        # render Update_Customer page passing our query data
+        return render_template("Update_Product.j2", data=data)
+
+    if request.method == "POST":
+        # fire off if user clicks the 'Edit Product' button
+        if request.form.get("Update_Product"):
+            # grab user form inputs
+            product_id = request.form["product_id"]
+            name = request.form["name"]
+            description = request.form["description"]
+            quantity_in_stock = request.form["quantity_in_stock"]
+            total_dollar_value = request.form["total_dollar_value"]
+
+            query = "Update Products SET name = %s, description = %s, quantity_in_stock = %s, total_dollar_value = %s WHERE product_id = %s;"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (name, description, quantity_in_stock, total_dollar_value, product_id))
+            mysql.connection.commit()
+
+            # redirect back to Products page after we execute the update query
+            return redirect("/Products")
+
+# ---------------------------------------------------------------------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------------------------------------------------------------------#
+# Sales Page Routes - Browse, Add, and Update
+
+@app.route('/Sales', methods=["POST", "GET"])
+def Sales_page():
+
+    if request.method == "GET":
+        # SQL query to grab all Products in Products Database
+        query = "SELECT sale_id, sale_date, shipping_date, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name, Status_Codes.status as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id INNER JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id;"
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        data = cur.fetchall()
+
+        query2 = "SELECT customer_id, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name FROM Customers;"
+        cur = mysql.connection.cursor()
+        cur.execute(query2)
+        customers = cur.fetchall()
+
+        query3 = "SELECT status_code_id, status FROM Status_Codes;"
+        cur = mysql.connection.cursor()
+        cur.execute(query3)
+        status_codes = cur.fetchall()
+
+        return render_template("Sales.j2", data=data, customers=customers, status_codes=status_codes)
+
+        #### NEED IF STATEMENT FOR STATUS_CODE NULL VALUE ROUTING.
+
+    if request.method == "POST":
+        # Fires off if the user presses Add Sale Button
+        if request.form.get("Add_Sale"):
+            # grab customer form inputs
+            sale_date = request.form["sale_date"]
+            shipping_date = request.form["shipping_date"]
+            customer_id = request.form["customer_id"]
+            status_code_id = request.form["status_code_id"]
+
+            # no null inputs allowed
+            query = "INSERT INTO Sales (sale_date, shipping_date, customer_id, status_code_id) VALUES (%s, %s, %s, %s);"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (sale_date, shipping_date, customer_id, status_code_id))
+            mysql.connection.commit()      
+
+            # redirect back to sales page
+            return redirect("/Sales")
+
+
+# route for update functionality, updating the attributes of a sale in Sales
+
+@app.route("/Update_Sale/<int:sale_id>", methods=["POST", "GET"])
+def update_sale(sale_id):
+    if request.method == "GET":
+        
+        query = "SELECT sale_id, sale_date, shipping_date, Customers.customer_id, Status_Codes.status_code_id, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name, Status_Codes.status as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id INNER JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id WHERE sale_id = %s;" % (sale_id)
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        data = cur.fetchall()
+
+        query2 = "SELECT customer_id, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name FROM Customers;"
+        cur = mysql.connection.cursor()
+        cur.execute(query2)
+        customers = cur.fetchall()
+
+        query3 = "SELECT status_code_id, status FROM Status_Codes;"
+        cur = mysql.connection.cursor()
+        cur.execute(query3)
+        status_codes = cur.fetchall()
+
+        return render_template("Update_Sale.j2", data=data, customers=customers, status_codes=status_codes)
+
+    if request.method == "POST":
+        # fire off if user clicks the 'Edit Product' button
+        if request.form.get("Update_Sale"):
+            # grab user form inputs
+            sale_id = request.form["sale_id"]
+            sale_date = request.form["sale_date"]
+            shipping_date = request.form["shipping_date"]
+            customer_id = request.form["customer_id"]
+            status_code_id = request.form["status_code_id"]
+
+            print("customer_id is", customer_id)
+
+            query = "Update Sales SET sale_date = %s, shipping_date = %s, customer_id = %s, status_code_id = %s WHERE sale_id = %s;"
+            cur = mysql.connection.cursor()
+            cur.execute(query, (sale_date, shipping_date, customer_id, status_code_id, sale_id))
+            mysql.connection.commit()
+
+            # redirect back to Products page after we execute the update query
+            return redirect("/Sales")
+
+# ---------------------------------------------------------------------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------------------------------------------------------------------#
+# Status Codes Page Routes
+@app.route('/Status_Codes')
+def status_codes_page():
+    return render_template("Status_Codes.j2")
+
+# ---------------------------------------------------------------------------------------------------------------------------------------#
+# Purchase Orders to Products Page Routes 
+@app.route('/Purchase_Orders_Products')
+def purchaes_orders_products_page():
+    return render_template("Purchase_Orders_Products.j2")
+
+# ---------------------------------------------------------------------------------------------------------------------------------------#
+# Products to Sales routes
+@app.route('/Products_Sales')
+def product_sales_page():
+    return render_template("Products_Sales.j2")
+
 
 # Listener
 

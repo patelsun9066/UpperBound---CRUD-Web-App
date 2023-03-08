@@ -6,7 +6,7 @@
 # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
  -->
 <head>
-	<title>Update Customer</title>
+	<title>Update Product</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
 </head>
 
@@ -14,7 +14,7 @@
 <body>
     <div>
         <table border="1" cellpadding="5"> 
-            <caption> <b>Editing Customer:<b> </caption>
+            <caption> <b>Editing Product:<b> </caption>
             <!-- Access data tuple passed from app.py -->
             {% if data %}
                 <thead>
@@ -45,34 +45,27 @@
 <br>
 <br>
 <div id="update" style="display: block">
-    <form id="UpdateCustomer" action="/Update_Customer/{{data[0].customer_id}}" method="POST">
-      <legend><strong>Update Customer</strong></legend>
+    <form id="UpdateProduct" action="/Update_Product/{{data[0].product_id}}" method="POST">
+      <legend><strong>Update Product</strong></legend>
       <br>
         <fieldset class="fields">
-            <input type="hidden" value="{{data[0].customer_id}}" class="form-control" id="customer_id" name="customer_id" required>
-            <label> first name </label> <input type="text" class="form-control" id="first_name" name="first_name" value="{{data[0].first_name}}" required>
+            <input type="hidden" value="{{data[0].product_id}}" class="form-control" id="product_id" name="product_id" required>
+            <label> name </label> <input type="text" class="form-control" id="name" name="name" value="{{data[0].name}}" required>
             <br>
             <br>
-            <label> last name </label> <input type="text" class="form-control" id="last_name" name="last_name" value="{{data[0].last_name}}" required>
+            <label> description </label> <input type="text" class="form-control" id="description" name="description" value="{{data[0].description}}" required>
             <br>
             <br>
-            <label> email </label> <input type="text" class="form-control" id="email" name="email" value="{{data[0].email}}" required>
+            <label> quantity_in_stock </label> <input type="number" class="form-control" id="quantity_in_stock" name="quantity_in_stock" value="{{data[0].quantity_in_stock}}" required>
             <br>
             <br>
-            <label> address </label> <input type="text" class="form-control" id="address" name="address" value="{{data[0].address}}" required>
+            <label> total_dollar_value </label> <input type="number" class="form-control" id="total_dollar_value" name="total_dollar_value" value="{{data[0].total_dollar_value}}" required>
             <br>
             <br>
-            <label> phone number <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{data[0].phone_number}}" required>
-            <br>
-            <br>
-            <label> first purchase </label> <input type="date" class="form-control" id="first_purchase" name="first_purchase" value="{{data[0].first_purchase}}" required>
-            <br>
-            <br>
-            <label> last purchase </label> <input type="date" class="form-control" id="last_purchase" name="last_purchase" value="{{data[0].last_purchase}}" required>
         </fieldset>
         <br>
-        <input type="submit" value="Update Customer" name="Update_Customer" class="btn btn-primary" style="margin:.5rem;">
-        <a href='/Customers'><input class="btn" type="button" value="Cancel"></a>
+        <input type="submit" value="Update Product" name="Update_Product" class="btn btn-primary" style="margin:.5rem;">
+        <a href='/Products'><input class="btn" type="button" value="Cancel"></a>
     </form>
 
 </html>

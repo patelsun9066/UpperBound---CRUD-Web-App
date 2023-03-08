@@ -6,7 +6,7 @@
 # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
  -->
 <head>
-    <title>Purchase Orders</title>
+    <title>Sales</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
     <script language="JavaScript">
 	function showform(dowhat) {
@@ -41,16 +41,16 @@
             document.getElementById('delete').style.display = 'none';
 		}
 	}
-	function newPurchaseOrder() {
+	function newSale() {
 		showform('insert');
 	}
-	function updatePurchaseOrder(pid) {
+	function updateSale(pid) {
 		showform('update');
 	}
-    function deletePurchaseOrder(pid) {
+    function deleteSale(pid) {
 		showform('delete');
 	}
-	function browsePurchaseOrders() {
+	function browseSales() {
 		showform('browse');
 	}
 	function showAll() {
@@ -59,7 +59,7 @@
 	</script>
 </head>
 
-<body onload="browsePurchaseOrders()>
+<body onload="browseSales()>
 <h1>Purchase Orders</h1>
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
@@ -74,7 +74,7 @@
 <br>
 <br>
 <div id="browse" style="display: block">
-    <p><strong>Browse Purchase Orders</strong></p>
+    <p><strong>Browse Sales</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
 <thead>  
@@ -102,8 +102,7 @@
     <td>{{item[key]}}</td>
     {% endfor %}
     <!-- Create our edit/delete buttons -->
-	<td><a href="Update_Purchase_Order/{{item.purchase_order_id}}" class="btn btn-default">Edit</a></td>
-	<td><a href="Delete_Purchase_Order/{{item.purchase_order_id}}" class="btn btn-default">Delete</a></td>
+	<td><a href="Update_Sale/{{item.sale_id}}" class="btn btn-default">Edit</a></td>
 </tr>
     {% endfor %}
 {% endif %} 
@@ -113,26 +112,34 @@
 </div> <!-- browse -->
 
 <div id="insert" style="display: block">
-    <form id="addPurchaseOrder" action="/Purchase_Orders" method="post">
-        <legend><strong>Add Purchase Order</strong></legend>
+    <form id="addSale" action="/Sales" method="post">
+        <legend><strong>Add Sale</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> purchase date </label> <input type="date" name="purchase_date" placeholder="" required>
+            <label> sale_date </label> <input type="date" name="sale_date" placeholder="" required>
             <br>
             <br>
-            <label> delivery date </label> <input type="date" name="delivery_date" placeholder="" required>
+            <label>  shipping_date </label> <input type="date" name="shipping_date" placeholder="" required>
             <br>
             <br>
-            <label> vendor id </label><select class="form-control" id="vendor_id" name="vendor_id" placeholder="" required>
-                {% for vendor in vendors %}
-                    <option value="{{ vendor['vendor_id'] }}"> {{vendor['name']}}</option> 
+            <label> customer_id </label><select class="form-control" id="customer_id" name="customer_id" placeholder="" required>
+                {% for customer in customers %}
+                    <option value="{{ customer['customer_id'] }}"> {{customer['customer_full_name']}}</option> 
+                <!-- End of this for loop -->
+                {% endfor %} 
+			</select>
+            <br>
+            <br>
+            <label> status_code_id </label><select class="form-control" id="status_code_id" name="status_code_id" placeholder="" required>
+                {% for status_code in status_codes %}
+                    <option value="{{ status_code['status_code_id'] }}"> {{status_code['status']}}</option> 
                 <!-- End of this for loop -->
                 {% endfor %} 
 			</select>
           </fieldset>
           <br>
-          <input class="btn" type="submit" id="addPurchaseOrder" value="Add Purchase Order" name="Add_Purchase_Order">
-          <input class="btn" type="button" value="Cancel" onClick="browsePurchaseOrders()">
+          <input class="btn" type="submit" id="addSale" value="Add Sale" name="Add_Sale">
+          <input class="btn" type="button" value="Cancel" onClick="browseSale()">
 	  </form> <!--add new purchase order-->
 </div><!-- insert -->
 <br>

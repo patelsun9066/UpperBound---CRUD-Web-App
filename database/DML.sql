@@ -43,7 +43,7 @@ INSERT INTO Purchase_Orders (purchase_date, delivery_date, vendor_id)
 VALUES (:purchase_dateInput, :delivery_dateInput, :vendor_id_from_dropdown_Input);
 
 -- Update Purchase Orders Table
-Select purchase_order_id, purchase_date, delivery_date, vendor_id from Purchase_Orders
+SELECT purchase_order_id, purchase_date, delivery_date, Vendors.vendor_id as vendor_id, Vendors.name as vendor_name FROM Purchase_Orders INNER JOIN Vendors ON Purchase_Orders.vendor_id = Vendors.vendor_id
 WHERE purchase_order_id = :purchase_order_ID_selected_from_purchase_orders_page;
 
 Update Purchase_Orders SET purchase_date = :purchase_dateInput, delivery_date = :delivery_dateInput, vendor_id = :vendor_id_from_dropdown_Input
@@ -79,8 +79,8 @@ INSERT INTO Sales (sale_date, shipping_date, customer_id, status_code_id)
 VALUES (:sale_dateInput, :shipping_dateInput, :customer_idInputDropDown, :status_code_idInputDropDown);
 
 -- Update Sales Table
-Select sale_id, sale_date, shipping_date, customer_id, status_code_id from Sales
-WHERE sale_id = :sale_ID_selected_from_sales_page;
+SELECT sale_id, sale_date, shipping_date, Customers.customer_id, Status_Codes.status_code_id, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name, Status_Codes.status as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id INNER JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id 
+WHERE sale_id =:sale_ID_selected_from_sales_page;
 
 Update Sales SET sale_date = :sale_dateInput, shipping_date = :shipping_dateInput, customer_id = :customer_idInputDropDown, status_code_id = :status_code_idInputDropDown
 WHERE sale_id = :sale_ID_selected_from_update_form;
@@ -95,7 +95,7 @@ INSERT INTO Products_Sales (product_id, sale_id, quantity_sold, unit_selling_pri
 VALUES (:product_idInputDropdown, :sale_idInputDropDown, :quantity_soldInput, :unit_selling_priceInput, :total_priceInput);
 
 -- Update Products_Sales Table
-Select product_sale_id, product_id, sale_id, quantity_sold, unit_selling_price, total_price from Products_Sales
+SELECT product_sale_id, Products.name as product_name, Sales.sale_date as sale_date, quantity_sold, unit_selling_price, total_price FROM Products_Sales INNER JOIN Products ON Products_Sales.product_id = Products.product_id INNER JOIN Sales ON Products_Sales.sale_id = Sales.sale_id
 WHERE product_sale_id = :product_sale_ID_selected_from_products_sales_page;
 
 Update Products_Sales SET product_id = :product_idInputDropdown, sale_id = :sale_idInputDropdown, quantity_sold = :quantity_soldInput, unit_selling_price = :unit_selling_priceInput, total_price = :total_priceInput
@@ -104,14 +104,14 @@ WHERE product_sale_id = :product_sale_ID_selected_from_update_form;
 -----------------------------------------------
 
 -- Get all Purchase_Orders_Products Table 
-Select purchase_order_product_id, Purchase_Orders.purchase_date, Products.name as product_name, purchase_quantity, purchase_price From Purchase_Orders_Products INNER JOIN Purchase_Orders ON Purchase_Orders.purchase_order_id = Purchase_Orders_Products.purchase_order_id INNER JOIN Products ON Products.product_id = Purchase_Orders_Products.product_id;
+SELECT purchase_order_product_id, Purchase_Orders.purchase_date, Products.name as product_name, purchase_quantity, purchase_price From Purchase_Orders_Products INNER JOIN Purchase_Orders ON Purchase_Orders.purchase_order_id = Purchase_Orders_Products.purchase_order_id INNER JOIN Products ON Products.product_id = Purchase_Orders_Products.product_id;
 
 -- Insert into Purchase_Orders_Products Table
 INSERT INTO Purchase_Orders_Products (purchase_order_id, product_id, purchase_quantity, purchase_price)
 VALUES (:purchase_order_idInputDropdown, :product_idInputDropdown, :purchase_quantityInput, :purchase_priceInput);
 
 -- Update Purchase_Orders_Products Table
-Select purchase_order_product_id, purchase_order_id, product_id, purchase_quantity, purchase_price from Purchase_Orders_Products
+SELECT purchase_order_product_id, Purchase_Orders.purchase_date, Products.name as product_name, purchase_quantity, purchase_price From Purchase_Orders_Products INNER JOIN Purchase_Orders ON Purchase_Orders.purchase_order_id = Purchase_Orders_Products.purchase_order_id INNER JOIN Products ON Products.product_id = Purchase_Orders_Products.product_id
 WHERE purchase_order_product_id = :purchase_order_product_ID_selected_from_purchase_orders_products_page;
 
 Update Purchase_Orders_Products SET purchase_order_id = :purchase_order_idInputDropdown, product_id = :product_idInputDropdown, purchase_quantity = :purchase_quantityInput, purchase_price = :purchase_priceInput

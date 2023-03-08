@@ -1,0 +1,147 @@
+<html>
+<!-- 
+# Citation for the following jinja template file:
+# Date: 3/02/2023
+# Adapted from / Based on: Flask Starter App guide shared from course learning materials.
+# Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
+ -->
+<head>
+    <title>Products to Sales</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+</head>
+
+<body>
+    <h1>Products to Sales</h1>
+
+[<a href="/">Page Navigator:</a> | 
+<a href="/">Home</a> | 
+<a href="/Customers">Customers</a> | 
+<a href="/Products">Products</a> | 
+<a href="/Purchase_Orders">Purchase Orders</a> | 
+<a href="/Vendors">Vendors</a> | 
+<a href="/Sales">Sales</a> | 
+<a href="/Purchase_Orders_Products">Purchase Orders to Products</a> | 
+<a href="/Products_Sales">Products to Sales</a> | 
+<a href="/Status_Codes">Status Codes</a> ]
+
+
+<div id="browse" style="display: block">
+<p><strong>Browse Connections</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th>product sale id</th>
+    <th>product id</th>
+    <th>sale id</th>
+    <th>quantity sold</th>
+    <th>unit selling price</th>
+    <th>total price</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td align="right">1</td>
+    <td >1</td>
+    <td >3</td>
+    <td >10</td>
+    <td >350.00</td>
+    <td >3500.00</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td align="right">2</td>
+    <td >2</td>
+    <td >1</td>
+    <td >20</td>
+    <td >50.00</td>
+    <td >1000.00</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td align="right">3</td>
+    <td >3</td>
+    <td >2</td>
+    <td >30</td>
+    <td >10.00</td>
+    <td >300.00</td>
+  </tr>
+</table>
+<p></p>
+<br>
+</div> <!-- browse -->
+
+<div id="insert" style="display: block">
+    <form id="addConnection">
+        <legend><strong>Add Connection</strong></legend>
+        <br>
+          <fieldset class="fields">
+            <label> product id </label> 
+            <select id="product id" name="product id">
+              <option value=""></option>
+              <option value="1">1 : Product A	</option>
+              <option value="2">2 : Product B	</option>
+              <option value="3">3 : Product C	</option>
+            </select>
+            <br>
+            <br>
+            <label> sale id </label> <select id="sale id" name="sale id">
+              <option value=""></option>
+              <option value="1">1 : 2021-01-02</option>
+              <option value="2">2 : 2021-02-03</option>
+              <option value="3">3 : 2021-03-04</option>
+            </select>
+            <br>
+            <br>
+            <label> quantity sold</label> <input type="number" name="quantity sold">
+            <br>
+            <br>
+            <label> unit selling price</label> <input type="number" name="unit selling price">
+            <br>
+            <br>
+            <label> total price</label> <input type="number" name="total price">
+          </fieldset>
+          <br>
+        <input class="btn" type="submit" id="addConnection" value="Add Connection">
+        <input class="btn" type="button" value="Cancel">
+	</form> <!--add new connection-->
+</div><!-- insert -->
+<br>
+<br>
+<div id="update" style="display: block">
+  <form id="updateConnection">
+      <legend><strong>Update Connection</strong></legend>
+      <br>
+          <fieldset class="fields">
+            <label>sale id: 1</label> 
+            <br>
+            <br>
+            <label> product id </label> 
+            <select id="product id" name="product id">
+              <option value="1" selected>1 : Product A</option>
+              <option value="2">2 : Product B</option>
+              <option value="3">3 : Product C</option>
+            </select>
+            <br>
+            <br>
+            <label> sale id  </label> 
+            <select id="sale id" name="sale id">
+              <option value="1">1 : 2021-01-02</option>
+              <option value="2">2 : 2021-02-03</option>
+              <option value="3" selected>3 : 2021-03-04</option>
+            </select>
+            <br>
+            <br>
+            <label> quantity sold</label> <input type="number" name="quantity sold" value="10">
+            <br>
+            <br>
+            <label> unit selling price</label> <input type="number" name="unit selling price" value="350.00">
+            <br>
+            <br>
+            <label> total price</label> <input type="number" name="total price" value="3500.00">
+          </fieldset>
+          <br>
+    <input class="btn" type="submit" id="UpdateSaveConnection" value="Save Updates to Connection">
+    <input class="btn" type="button" value="Cancel" >
+  </form> 
+</div><!-- update -->
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<!-- 
+# Citation for the following jinja template file:
+# Date: 3/02/2023
+# Adapted from / Based on: Flask Starter App guide shared from course learning materials.
+# Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
+ -->
+<head>
+    <title>Status Codes</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+</head>
+
+<body>
+    <h1>Status Codes</h1>
+
+[<a href="/">Page Navigator:</a> | 
+<a href="/">Home</a> | 
+<a href="/Customers">Customers</a> | 
+<a href="/Products">Products</a> | 
+<a href="/Purchase_Orders">Purchase Orders</a> | 
+<a href="/Vendors">Vendors</a> | 
+<a href="/Sales">Sales</a> | 
+<a href="/Purchase_Orders_Products">Purchase Orders to Products</a> | 
+<a href="/Products_Sales">Products to Sales</a> | 
+<a href="/Status_Codes">Status Codes</a> ]
+
+<div id="browse" style="display: block">
+<p><strong>Browse Status Codes</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th>status code id</th>
+    <th>status</th>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td align="right">1</td>
+    <td >Delivered</td>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td align="right">2</td>
+    <td >In-Transit</td>
+  </tr>
+  <tr>
+    <td><a href="#"></a></td>
+    <td align="right">3</td>
+    <td >Processing-Order</td>
+  </tr>
+  
+</table>
+<p></p>
+<br>
+</div> <!-- browse -->
+
+<div id="insert" style="display: block">
+    <form id="addStatusCode">
+        <legend><strong>Add Status Code</strong></legend>
+        <br>
+          <fieldset class="fields">
+            <label> status</label> <input type="text" name="status">
+          </fieldset>
+          <br>
+          <input class="btn" type="submit" id="addStatusCode" value="Add Status Code">
+          <input class="btn" type="button" value="Cancel">
+	  </form> <!--add new status code-->
+</div><!-- insert -->
+<br>
+<br>
+</body>
+</html>
