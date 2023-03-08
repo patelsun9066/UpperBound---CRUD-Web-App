@@ -52,7 +52,7 @@
 </head>
 
 <body onload="browseVendors()>
-<h1>Customers</h1>
+
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
@@ -66,6 +66,8 @@
 <br>
 <br>
 <div id="browse" style="display: block">
+    <h1>Vendors</h1>
+    <br>
     <p><strong>Browse Vendors</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
@@ -108,19 +110,19 @@
         <legend><strong>Add Vendor</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> name </label> <input type="text" name="name" placeholder="" required>
+            <label> name </label> <input type="text" name="name" placeholder="ex. Fake Corp LLC." required>
             <br>
             <br>
-            <label> address </label> <input type="text" name="address" placeholder="" required>
+            <label> address </label> <input type="text" name="address" placeholder="ex. 1099 Industrial Road, NJ 09923" required>
             <br>
             <br>
-            <label> contact name </label> <input type="text" name="contact_name" placeholder="" required>
+            <label> contact name </label> <input type="text" name="contact_name" placeholder="ex. Larry David" required>
             <br>
             <br>
-            <label> contact phone number </label> <input type="text" name="contact_phone_number" placeholder="" required>
+            <label> contact phone number </label> <input type="text" name="contact_phone_number" placeholder="ex. 908-456-7891" required>
             <br>
             <br>
-            <label> contact email </label> <input type="text" name="contact_email" placeholder="" required>
+            <label> contact email </label> <input type="text" name="contact_email" placeholder="ex. Ldavid@Fakecorp.com" required>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addVendor" value="Add Vendor" name="Add_Vendor">

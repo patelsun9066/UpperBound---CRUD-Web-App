@@ -60,7 +60,6 @@
 </head>
 
 <body onload="browseCustomers()>
-    <h1>Customers</h1>
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
@@ -74,6 +73,8 @@
 <br>
 <br>
 <div id="browse" style="display: block">
+    <h1>Customers</h1>
+    <br>
     <p><strong>Browse Customers</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
@@ -117,19 +118,19 @@
         <legend><strong>Add Customer</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> first name </label> <input type="text" name="first_name" placeholder="" required>
+            <label> first name </label> <input type="text" name="first_name" placeholder="ex. John" required>
             <br>
             <br>
-            <label> last name </label> <input type="text" name="last_name" placeholder="" required>
+            <label> last name </label> <input type="text" name="last_name" placeholder="ex. Smith" required>
             <br>
             <br>
-            <label> email </label> <input type="text" name="email" placeholder="" required>
+            <label> email </label> <input type="text" name="email" placeholder="ex. JohnSmith@gmail.com" required>
             <br>
             <br>
-            <label> address </label> <input type="text" name="address" placeholder="" required>
+            <label> address </label> <input type="text" name="address" placeholder="ex. 99 Fakeadd Street, NJ 09934" required>
             <br>
             <br>
-            <label> phone number </label> <input type="text" name="phone_number" placeholder="" required>
+            <label> phone number </label> <input type="text" name="phone_number" placeholder="ex. 676-890-2323" required>
             <br>
             <br>
             <label> first purchase </label> <input type="date" name="first_purchase" placeholder="" required>

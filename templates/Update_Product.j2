@@ -59,7 +59,7 @@
             <label> quantity in stock </label> <input type="number" class="form-control" id="quantity_in_stock" name="quantity_in_stock" value="{{data[0].quantity_in_stock}}" required>
             <br>
             <br>
-            <label> total dollar value </label> <input type="number" class="form-control" id="total_dollar_value" name="total_dollar_value" value="{{data[0].total_dollar_value}}" required>
+            <label> total dollar value </label> <input type="number" step=".01" class="form-control" id="total_dollar_value" name="total_dollar_value" value="{{data[0].total_dollar_value}}" required>
         </fieldset>
         <br>
         <input type="submit" value="Update Product" name="Update_Product" class="btn btn-primary" style="margin:.5rem;">

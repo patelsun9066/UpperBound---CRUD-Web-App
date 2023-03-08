@@ -60,7 +60,7 @@
 </head>
 
 <body onload="browsePurchaseOrdersProducts()>
-<h1>Purchase Orders to Products</h1>
+
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
@@ -74,6 +74,8 @@
 <br>
 <br>
 <div id="browse" style="display: block">
+    <h1>Purchase Orders to Products</h1>
+    <br>
     <p><strong>Browse Purchase Orders to Products</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
@@ -133,10 +135,10 @@
 			      </select>
             <br>
             <br>
-            <label>  purchase quantity </label> <input type="number" name="purchase_quantity" placeholder="" required>
+            <label>  purchase quantity </label> <input type="number" name="purchase_quantity" placeholder="ex. 100" required>
             <br>
             <br>
-            <label>  purchase price </label> <input type="number" name="purchase_price" placeholder="" required>
+            <label>  purchase price </label> <input type="number" name="purchase_price" placeholder="ex. 323.99" step=".01" required>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addPurchaseOrderProduct" value="Add Purchase Order to Product" name="Add_Purchase_Order_Product">

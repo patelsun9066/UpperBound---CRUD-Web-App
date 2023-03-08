@@ -52,7 +52,7 @@
 </head>
 
 <body onload="browseStatusCodes()>
-  <h1>Status Codes</h1>
+ 
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
@@ -66,6 +66,8 @@
 <br>
 <br>
 <div id="browse" style="display: block">
+	<h1>Status Codes</h1>
+	<br>
     <p><strong>Browse Status Codes</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
@@ -108,7 +110,7 @@
         <legend><strong>Add Status Code</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> status </label> <input type="text" name="status" placeholder="" required>
+            <label> status </label> <input type="text" name="status" placeholder="ex. Processing" required>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addStatusCode" value="Add Status Code" name="Add_Status_Code">

@@ -60,7 +60,6 @@
 </head>
 
 <body onload="browseProductsSales()>
-<h1>Products to Sales</h1>
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
@@ -74,6 +73,8 @@
 <br>
 <br>
 <div id="browse" style="display: block">
+    <h1>Products to Sales</h1>
+    <br>
     <p><strong>Browse Products to Sales</strong></p>
     <table border="1" cellpadding="5">
 {% if data %}
@@ -133,13 +134,13 @@
 			      </select>
             <br>
             <br>
-            <label>  quantity sold </label> <input type="number" name="quantity_sold" placeholder="" required>
+            <label>  quantity sold </label> <input type="number" name="quantity_sold" placeholder="ex. 10" required>
             <br>
             <br>
-            <label>  unit selling price </label> <input type="number" name="unit_selling_price" placeholder="" required>
+            <label>  unit selling price </label> <input type="number" name="unit_selling_price" placeholder="ex. 5.99" step=".01" required>
             <br>
             <br>
-            <label>  total price </label> <input type="number" name="total_price" placeholder="" required>
+            <label>  total price </label> <input type="number" name="total_price" placeholder="ex. 59.90 " step=".01" required>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addProductSale" value="Add Product to Sale" name="Add_Product_Sale">
