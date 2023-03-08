@@ -72,8 +72,7 @@ WHERE product_id = :product_ID_selected_from_update_form;
 
 -- Get All Sales 
 
-SELECT sale_id, sale_date, shipping_date, Customers.first_name + '' + Customers.last_name as customer_full_name, Status_Codes.status_code_id as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id INNER JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id;
-
+SELECT sale_id, sale_date, shipping_date, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name, Status_Codes.status as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id INNER JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id;
 
 -- Insert into Sales Table
 INSERT INTO Sales (sale_date, shipping_date, customer_id, status_code_id)
@@ -89,7 +88,7 @@ WHERE sale_id = :sale_ID_selected_from_update_form;
 ---------------------------------------------
 
 -- Get All Products_Sales 
-Select * from Products_Sales;
+SELECT product_sale_id, Products.name as product_name, Sales.sale_date as sale_date, quantity_sold, unit_selling_price, total_price FROM Products_Sales INNER JOIN Products ON Products_Sales.product_id = Products.product_id INNER JOIN Sales ON Products_Sales.sale_id = Sales.sale_id;
 
 -- Insert into Products_Sales Table
 INSERT INTO Products_Sales (product_id, sale_id, quantity_sold, unit_selling_price, total_price)
@@ -105,7 +104,7 @@ WHERE product_sale_id = :product_sale_ID_selected_from_update_form;
 -----------------------------------------------
 
 -- Get all Purchase_Orders_Products Table 
-Select * From Purchase_Orders_Products;
+Select purchase_order_product_id, Purchase_Orders.purchase_date, Products.name as product_name, purchase_quantity, purchase_price From Purchase_Orders_Products INNER JOIN Purchase_Orders ON Purchase_Orders.purchase_order_id = Purchase_Orders_Products.purchase_order_id INNER JOIN Products ON Products.product_id = Purchase_Orders_Products.product_id;
 
 -- Insert into Purchase_Orders_Products Table
 INSERT INTO Purchase_Orders_Products (purchase_order_id, product_id, purchase_quantity, purchase_price)
@@ -138,7 +137,7 @@ VALUES (:statusInput);
 SELECT vendor_id, name FROM Vendors;
 
 -- get all customer ids and names to populate the customer id dropdown in Sales
-SELECT customer_id, first_name, last_name FROM customers;
+SELECT customer_id, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name FROM Customers;
 
 -- get all status code ids and status to populate the status code id dropdown in Sales
 SELECT status_code_id, status FROM Status_Codes;
