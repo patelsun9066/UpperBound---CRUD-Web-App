@@ -351,7 +351,8 @@ def Sales_page():
 
     if request.method == "GET":
         # SQL query to grab all sales in Sales Database
-        query = "SELECT sale_id, sale_date, shipping_date, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name, Status_Codes.status as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id INNER JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id;"
+        #query = "SELECT * FROM Sales;"
+        query = "SELECT sale_id, sale_date, shipping_date, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name, Status_Codes.status as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id LEFT JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id;"
         cur = mysql.connection.cursor()
         cur.execute(query)
         data = cur.fetchall()
@@ -379,11 +380,18 @@ def Sales_page():
             customer_id = request.form["customer_id"]
             status_code_id = request.form["status_code_id"]
 
-            # no null inputs allowed
-            query = "INSERT INTO Sales (sale_date, shipping_date, customer_id, status_code_id) VALUES (%s, %s, %s, %s);"
-            cur = mysql.connection.cursor()
-            cur.execute(query, (sale_date, shipping_date, customer_id, status_code_id))
-            mysql.connection.commit()      
+            # null value for status code
+            if status_code_id == "":
+                query = "INSERT INTO Sales (sale_date, shipping_date, customer_id) VALUES (%s, %s, %s);"
+                cur = mysql.connection.cursor()
+                cur.execute(query, (sale_date, shipping_date, customer_id))
+                mysql.connection.commit()      
+            else:
+                # no null inputs allowed
+                query = "INSERT INTO Sales (sale_date, shipping_date, customer_id, status_code_id) VALUES (%s, %s, %s, %s);"
+                cur = mysql.connection.cursor()
+                cur.execute(query, (sale_date, shipping_date, customer_id, status_code_id))
+                mysql.connection.commit()      
 
             # redirect back to sales page
             return redirect("/Sales")
@@ -395,7 +403,7 @@ def Sales_page():
 def update_sale(sale_id):
     if request.method == "GET":
         
-        query = "SELECT sale_id, sale_date, shipping_date, Customers.customer_id, Status_Codes.status_code_id, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name, Status_Codes.status as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id INNER JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id WHERE sale_id = %s;" % (sale_id)
+        query = "SELECT sale_id, sale_date, shipping_date, Customers.customer_id, Status_Codes.status_code_id, CONCAT(Customers.first_name,' ', Customers.last_name) as customer_full_name, Status_Codes.status as status FROM Sales INNER JOIN Customers ON Sales.customer_id = Customers.customer_id LEFT JOIN Status_Codes ON Sales.status_code_id = Status_Codes.status_code_id WHERE sale_id = %s;" % (sale_id)
         cur = mysql.connection.cursor()
         cur.execute(query)
         data = cur.fetchall()
@@ -422,10 +430,16 @@ def update_sale(sale_id):
             customer_id = request.form["customer_id"]
             status_code_id = request.form["status_code_id"]
 
-            query = "Update Sales SET sale_date = %s, shipping_date = %s, customer_id = %s, status_code_id = %s WHERE sale_id = %s;"
-            cur = mysql.connection.cursor()
-            cur.execute(query, (sale_date, shipping_date, customer_id, status_code_id, sale_id))
-            mysql.connection.commit()
+            if status_code_id == "":
+                query = "Update Sales SET sale_date = %s, shipping_date = %s, customer_id = %s, status_code_id = NULL WHERE sale_id = %s;"
+                cur = mysql.connection.cursor()
+                cur.execute(query, (sale_date, shipping_date, customer_id, sale_id))
+                mysql.connection.commit()
+            else:
+                query = "Update Sales SET sale_date = %s, shipping_date = %s, customer_id = %s, status_code_id = %s WHERE sale_id = %s;"
+                cur = mysql.connection.cursor()
+                cur.execute(query, (sale_date, shipping_date, customer_id, status_code_id, sale_id))
+                mysql.connection.commit()
 
             # redirect back to Sales page after we execute the update query
             return redirect("/Sales")
