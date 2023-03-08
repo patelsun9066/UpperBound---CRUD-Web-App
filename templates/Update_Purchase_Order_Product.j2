@@ -6,7 +6,7 @@
 # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
  -->
 <head>
-	<title>Update Sale</title>
+	<title>Update Purchase Order to Product</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
 </head>
 
@@ -14,7 +14,7 @@
 <body>
     <div>
         <table border="1" cellpadding="5"> 
-            <caption> <b>Editing Sale:<b> </caption>
+            <caption> <b>Editing Purchase Order to Product:<b> </caption>
             <!-- Access data tuple passed from app.py -->
             {% if data %}
                 <thead>
@@ -45,45 +45,46 @@
 <br>
 <br>
 <div id="update" style="display: block">
-    <form id="updateSale" action="/Update_Sale/{{data[0].sale_id}}" method="POST">
-      <legend><strong>Update Sale</strong></legend>
+    <form id="updatePurchaseOrderProduct" action="/Update_Purchase_Order_Product/{{data[0].purchase_order_product_id}}" method="POST">
+      <legend><strong>Update Purchase Order to Product</strong></legend>
       <br>
         <fieldset class="fields">
-            <input type="hidden" value="{{data[0].sale_id}}" class="form-control" id="sale_id" name="sale_id" required>
-            <label> sale date </label> <input type="date" class="form-control" id="sale_date" name="sale_date" value="{{data[0].sale_date}}" required>
-            <br>
-            <br>
-            <label> shipping date </label> <input type="date" class="form-control" id="shipping_date" name="shipping_date" value="{{data[0].shipping_date}}" required>
-            <br>
-            <br>
-            <label> customer id </label><select class="form-control" id="customer_id" name="customer_id" placeholder="" required>
-                {% for customer in customers %}
+            <input type="hidden" value="{{data[0].purchase_order_product_id}}" class="form-control" id="purchase_order_product_id" name="purchase_order_product_id" required>
+            <label> purchase order id </label><select class="form-control" id="purchase_order_id" name="purchase_order_id" placeholder="" required>
+                {% for purchase_order in purchase_orders %}
                         <!-- If the value iterated matches the value of the currently Editing, pre-select that option -->
-                        {% if customer['customer_id'] == data[0].customer_id %}
-                            <option value="{{ customer['customer_id'] }}" selected> {{customer['customer_full_name']}}</option>
+                        {% if purchase_order['purchase_order_id'] == data[0].purchase_order_id %}
+                            <option value="{{ purchase_order['purchase_order_id'] }}" selected> {{purchase_order['purchase_date']}}</option>
                         {% else %}
-                            <option value="{{ customer['customer_id'] }}"> {{customer['customer_full_name']}}</option> 
+                            <option value="{{ purchase_order['purchase_order_id'] }}"> {{purchase_order['purchase_date']}}</option> 
                         {% endif %}
                 <!-- End of this for loop -->
                 {% endfor %} 
 			</select>
             <br>
             <br>
-            <label> status code id </label><select class="form-control" id="status_code_id" name="status_code_id" placeholder="" required>
-                {% for status_code in status_codes %}
+            <label> product id </label><select class="form-control" id="product_id" name="product_id" placeholder="" required>
+                {% for product in products %}
                         <!-- If the value iterated matches the value of the currently Editing, pre-select that option -->
-                        {% if status_code['status_code_id'] == data[0].status_code_id %}
-                            <option value="{{ status_code['status_code_id'] }}" selected> {{status_code['status']}}</option>
+                        {% if product['product_id'] == data[0].product_id %}
+                            <option value="{{ product['product_id'] }}" selected> {{product['name']}}</option>
                         {% else %}
-                            <option value="{{ status_code['status_code_id'] }}"> {{status_code['status']}}</option> 
+                            <option value="{{ product['product_id'] }}"> {{product['name']}}</option> 
                         {% endif %}
                 <!-- End of this for loop -->
                 {% endfor %}
 			</select>
+            <br>
+            <br>
+            <label> purchase quantity </label> <input type="number" class="form-control" id="purchase_quantity" name="purchase_quantity" value="{{data[0].purchase_quantity}}" required>
+            <br>
+            <br>
+            <label> purchase price </label> <input type="number" class="form-control" id="purchase_price" name="purchase_price" value="{{data[0].purchase_price}}" required>
+
         </fieldset>
         <br>
-        <input type="submit" value="Update Sale" name="Update_Sale" class="btn btn-primary" style="margin:.5rem;">
-        <a href='/Sales'><input class="btn" type="button" value="Cancel"></a>
+        <input type="submit" value="Update Purchase Order to Product" name="Update_Purchase_Order_Product" class="btn btn-primary" style="margin:.5rem;">
+        <a href='/Purchase_Orders_Products'><input class="btn" type="button" value="Cancel"></a>
     </form>
 
 </html>

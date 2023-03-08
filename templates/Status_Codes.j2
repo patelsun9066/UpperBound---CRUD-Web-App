@@ -1,18 +1,58 @@
 <html>
 <!-- 
 # Citation for the following jinja template file:
-# Date: 3/02/2023
+# Date: 3/07/2023
 # Adapted from / Based on: Flask Starter App guide shared from course learning materials.
 # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
  -->
 <head>
     <title>Status Codes</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <script language="JavaScript">
+	function showform(dowhat) {
+		/*
+		 * four DIVS: browse, insert, update
+		 * this function sets one visible the others not
+		 */
+		if(dowhat == 'insert') {
+			document.getElementById('browse').style.display = 'none';
+			document.getElementById('insert').style.display = 'block';
+			document.getElementById('edit').style.display = 'block';
+            document.getElementById('delete').style.display = 'none';
+		} else if(dowhat == 'update') {
+			document.getElementById('browse').style.display = 'none';
+			document.getElementById('insert').style.display = 'none';
+			document.getElementById('edit').style.display = 'block';
+            document.getElementById('delete').style.display = 'none';
+		} else if(dowhat == 'all') {
+			document.getElementById('browse').style.display = 'block';
+			document.getElementById('insert').style.display = 'block';
+			document.getElementById('edit').style.display = 'block';
+            document.getElementById('delete').style.display = 'block'
+		} else { //by default display browse
+			document.getElementById('browse').style.display = 'block';
+			document.getElementById('insert').style.display = 'none';
+			document.getElementById('edit').style.display = 'none';
+            document.getElementById('delete').style.display = 'none';
+		}
+	}
+	function newStatusCode() {
+		showform('insert');
+	}
+	function updateStatusCode(pid) {
+		showform('update');
+	}
+	function browseStatusCodes() {
+		showform('browse');
+	}
+	function showAll() {
+		showform('all');
+	}
+	</script>
 </head>
 
-<body>
-    <h1>Status Codes</h1>
-
+<body onload="browseStatusCodes()>
+  <h1>Status Codes</h1>
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
@@ -23,46 +63,55 @@
 <a href="/Purchase_Orders_Products">Purchase Orders to Products</a> | 
 <a href="/Products_Sales">Products to Sales</a> | 
 <a href="/Status_Codes">Status Codes</a> ]
-
+<br>
+<br>
 <div id="browse" style="display: block">
-<p><strong>Browse Status Codes</strong></p>
-<table border="1" cellpadding="5">
-  <tr>
-    <th><a href="#">New</a></th>
-    <th>status code id</th>
-    <th>status</th>
-  </tr>
-  <tr>
-    <td><a href="#"></a></td>
-    <td align="right">1</td>
-    <td >Delivered</td>
-  </tr>
-  <tr>
-    <td><a href="#"></a></td>
-    <td align="right">2</td>
-    <td >In-Transit</td>
-  </tr>
-  <tr>
-    <td><a href="#"></a></td>
-    <td align="right">3</td>
-    <td >Processing-Order</td>
-  </tr>
-  
+    <p><strong>Browse Status Codes</strong></p>
+    <table border="1" cellpadding="5">
+{% if data %}
+<thead>  
+<tr>
+    <!-- Iterate through each key in the first entry to get the
+    column name -->
+    {% for key in data[0].keys() %}
+    
+    <!-- Create a <th> tag with the key inside of it, this will be
+    our header row -->
+    <th scope="col" data-field="{{ key }}" data-filter-control="input">{{ key }}</th>
+      
+    <!-- End of this for loop -->
+    {% endfor %}
+</tr>
+<tbody>
+
+<!-- Now, iterate through every status code in Status Codes -->
+{% for item in data %}
+<tr>
+    <!-- Then iterate through every key in the current customer dictionary -->
+    {% for key in item.keys() %}
+
+    <!-- Create a <td> element with the value of that key in it -->
+    <td>{{item[key]}}</td>
+    {% endfor %}
+    <!-- Create our edit/delete buttons if any -->
+	
+</tr>
+    {% endfor %}
+{% endif %} 
 </table>
 <p></p>
 <br>
 </div> <!-- browse -->
 
 <div id="insert" style="display: block">
-    <form id="addStatusCode">
+    <form id="addStatusCode" action="/Status_Codes" method="post">
         <legend><strong>Add Status Code</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> status</label> <input type="text" name="status">
+            <label> status </label> <input type="text" name="status" placeholder="" required>
           </fieldset>
           <br>
-          <input class="btn" type="submit" id="addStatusCode" value="Add Status Code">
-          <input class="btn" type="button" value="Cancel">
+          <input class="btn" type="submit" id="addStatusCode" value="Add Status Code" name="Add_Status_Code">
 	  </form> <!--add new status code-->
 </div><!-- insert -->
 <br>

@@ -111,7 +111,7 @@ INSERT INTO Purchase_Orders_Products (purchase_order_id, product_id, purchase_qu
 VALUES (:purchase_order_idInputDropdown, :product_idInputDropdown, :purchase_quantityInput, :purchase_priceInput);
 
 -- Update Purchase_Orders_Products Table
-SELECT purchase_order_product_id, Purchase_Orders.purchase_date, Products.name as product_name, purchase_quantity, purchase_price From Purchase_Orders_Products INNER JOIN Purchase_Orders ON Purchase_Orders.purchase_order_id = Purchase_Orders_Products.purchase_order_id INNER JOIN Products ON Products.product_id = Purchase_Orders_Products.product_id
+SELECT purchase_order_product_id, Purchase_Orders.purchase_order_id as purchase_order_id, Products.product_id as product_id, Purchase_Orders.purchase_date, Products.name as product_name, purchase_quantity, purchase_price From Purchase_Orders_Products INNER JOIN Purchase_Orders ON Purchase_Orders.purchase_order_id = Purchase_Orders_Products.purchase_order_id INNER JOIN Products ON Products.product_id = Purchase_Orders_Products.product_id
 WHERE purchase_order_product_id = :purchase_order_product_ID_selected_from_purchase_orders_products_page;
 
 Update Purchase_Orders_Products SET purchase_order_id = :purchase_order_idInputDropdown, product_id = :product_idInputDropdown, purchase_quantity = :purchase_quantityInput, purchase_price = :purchase_priceInput

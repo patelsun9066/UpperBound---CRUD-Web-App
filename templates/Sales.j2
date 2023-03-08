@@ -60,7 +60,7 @@
 </head>
 
 <body onload="browseSales()>
-<h1>Purchase Orders</h1>
+<h1>Sales</h1>
 [<a href="/">Page Navigator:</a> | 
 <a href="/">Home</a> | 
 <a href="/Customers">Customers</a> | 
@@ -116,13 +116,13 @@
         <legend><strong>Add Sale</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> sale_date </label> <input type="date" name="sale_date" placeholder="" required>
+            <label> sale date </label> <input type="date" name="sale_date" placeholder="" required>
             <br>
             <br>
-            <label>  shipping_date </label> <input type="date" name="shipping_date" placeholder="" required>
+            <label>  shipping date </label> <input type="date" name="shipping_date" placeholder="" required>
             <br>
             <br>
-            <label> customer_id </label><select class="form-control" id="customer_id" name="customer_id" placeholder="" required>
+            <label> customer id </label><select class="form-control" id="customer_id" name="customer_id" placeholder="" required>
                 {% for customer in customers %}
                     <option value="{{ customer['customer_id'] }}"> {{customer['customer_full_name']}}</option> 
                 <!-- End of this for loop -->
@@ -130,7 +130,7 @@
 			</select>
             <br>
             <br>
-            <label> status_code_id </label><select class="form-control" id="status_code_id" name="status_code_id" placeholder="" required>
+            <label> status code id </label><select class="form-control" id="status_code_id" name="status_code_id" placeholder="" required>
                 {% for status_code in status_codes %}
                     <option value="{{ status_code['status_code_id'] }}"> {{status_code['status']}}</option> 
                 <!-- End of this for loop -->
@@ -139,7 +139,6 @@
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addSale" value="Add Sale" name="Add_Sale">
-          <input class="btn" type="button" value="Cancel" onClick="browseSale()">
 	  </form> <!--add new purchase order-->
 </div><!-- insert -->
 <br>
