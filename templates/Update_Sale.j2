@@ -50,13 +50,13 @@
       <br>
         <fieldset class="fields">
             <input type="hidden" value="{{data[0].sale_id}}" class="form-control" id="sale_id" name="sale_id" required>
-            <label> sale date </label> <input type="date" class="form-control" id="sale_date" name="sale_date" value="{{data[0].sale_date}}" required>
+            <label><b> sale date: </b></label> <input type="date" class="form-control" id="sale_date" name="sale_date" value="{{data[0].sale_date}}" required> <label><em><b> * required </b></em></label> 
             <br>
             <br>
-            <label> shipping date </label> <input type="date" class="form-control" id="shipping_date" name="shipping_date" value="{{data[0].shipping_date}}" required>
+            <label><b> shipping date: </b></label> <input type="date" class="form-control" id="shipping_date" name="shipping_date" value="{{data[0].shipping_date}}" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> customer id </label><select class="form-control" id="customer_id" name="customer_id" placeholder="" required>
+            <label><b> customer full name: </b></label><select class="form-control" id="customer_id" name="customer_id" placeholder="" required>
                 {% for customer in customers %}
                         <!-- If the value iterated matches the value of the currently Editing, pre-select that option -->
                         {% if customer['customer_id'] == data[0].customer_id %}
@@ -66,10 +66,11 @@
                         {% endif %}
                 <!-- End of this for loop -->
                 {% endfor %} 
-			</select>
+			</select> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> status code id </label><select class="form-control" id="status_code_id" name="status_code_id" placeholder="" required>
+            <label><b> status: </b></label> <select class="form-control" id="status_code_id" name="status_code_id" placeholder="">
+                <option value=""></option>
                 {% for status_code in status_codes %}
                         <!-- If the value iterated matches the value of the currently Editing, pre-select that option -->
                         {% if status_code['status_code_id'] == data[0].status_code_id %}
@@ -79,8 +80,7 @@
                         {% endif %}
                 <!-- End of this for loop -->
                 {% endfor %}
-                <option value=""></option>
-			</select>
+			</select> <label><em><b> * can be NULL value </b></em></label>
         </fieldset>
         <br>
         <input type="submit" value="Update Sale" name="Update_Sale" class="btn btn-primary" style="margin:.5rem;">

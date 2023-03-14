@@ -94,10 +94,10 @@
 </tr>
 <tbody>
 
-<!-- Now, iterate through every cusomter in Customers -->
+<!-- Now, iterate through every purchase order in Purchase_Orders -->
 {% for item in data %}
 <tr>
-    <!-- Then iterate through every key in the current customer dictionary -->
+    <!-- Then iterate through every key in the current purchase order dictionary -->
     {% for key in item.keys() %}
 
     <!-- Create a <td> element with the value of that key in it -->
@@ -119,18 +119,18 @@
         <legend><strong>Add Purchase Order</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> purchase date </label> <input type="date" name="purchase_date" placeholder="" required>
+            <label><b> purchase date: </b></label> <input type="date" name="purchase_date" placeholder="" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> delivery date </label> <input type="date" name="delivery_date" placeholder="" required>
+            <label><b> delivery date: </b></label> <input type="date" name="delivery_date" placeholder="" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> vendor id </label><select class="form-control" id="vendor_id" name="vendor_id" placeholder="" required>
+            <label><b> vendor name: </b></label><select class="form-control" id="vendor_id" name="vendor_id" placeholder="" required>
                 {% for vendor in vendors %}
                     <option value="{{ vendor['vendor_id'] }}"> {{vendor['name']}}</option> 
                 <!-- End of this for loop -->
                 {% endfor %} 
-			</select>
+			</select> <label><em><b> * required </b></em></label>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addPurchaseOrder" value="Add Purchase Order" name="Add_Purchase_Order">

@@ -18,22 +18,18 @@
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'block';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'none';
 		} else if(dowhat == 'update') {
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'none';
 		} else if(dowhat == 'all') {
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'block';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'block'
 		} else { //by default display browse
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'none';
-            document.getElementById('delete').style.display = 'none';
 		}
 	}
 	function newVendor() {
@@ -86,10 +82,10 @@
 </tr>
 <tbody>
 
-<!-- Now, iterate through every cusomter in Customers -->
+<!-- Now, iterate through every vendor in Vendors -->
 {% for item in data %}
 <tr>
-    <!-- Then iterate through every key in the current customer dictionary -->
+    <!-- Then iterate through every key in the current vendor dictionary -->
     {% for key in item.keys() %}
 
     <!-- Create a <td> element with the value of that key in it -->
@@ -110,19 +106,19 @@
         <legend><strong>Add Vendor</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> name </label> <input type="text" name="name" placeholder="ex. Fake Corp LLC." required>
+            <label><b> name: </b></label> <input type="text" name="name" placeholder="ex. Fake Corp LLC." required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> address </label> <input type="text" name="address" placeholder="ex. 1099 Industrial Road, NJ 09923" required>
+            <label><b> address: </b></label> <input type="text" name="address" placeholder="ex. 1099 Industrial Road, NJ 09923" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> contact name </label> <input type="text" name="contact_name" placeholder="ex. Larry David" required>
+            <label><b> contact name: </b></label> <input type="text" name="contact_name" placeholder="ex. Larry David" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> contact phone number </label> <input type="text" name="contact_phone_number" placeholder="ex. 908-456-7891" required>
+            <label><b> contact phone number: </b></label> <input type="text" name="contact_phone_number" placeholder="ex. 908-456-7891" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> contact email </label> <input type="text" name="contact_email" placeholder="ex. Ldavid@Fakecorp.com" required>
+            <label><b> contact email: </b></label> <input type="text" name="contact_email" placeholder="ex. Ldavid@Fakecorp.com" required> <label><em><b> * required </b></em></label>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addVendor" value="Add Vendor" name="Add_Vendor">

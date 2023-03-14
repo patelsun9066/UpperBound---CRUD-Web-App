@@ -97,7 +97,7 @@
 <!-- Now, iterate through every purchase order to product in Purchase_Orders_to_Products -->
 {% for item in data %}
 <tr>
-    <!-- Then iterate through every key in the current customer dictionary -->
+    <!-- Then iterate through every key in the current purchase order to product dictionary -->
     {% for key in item.keys() %}
 
     <!-- Create a <td> element with the value of that key in it -->
@@ -119,26 +119,26 @@
         <legend><strong>Add Purchase Order to Product</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> purchase order id </label><select class="form-control" id="purchase_order_id" name="purchase_order_id" placeholder="" required>
+            <label><b> purchase date: </b></label><select class="form-control" id="purchase_order_id" name="purchase_order_id" placeholder="" required>
                 {% for purchase_order in purchase_orders %}
                     <option value="{{ purchase_order['purchase_order_id'] }}"> {{purchase_order['purchase_date']}}</option> 
                 <!-- End of this for loop -->
                 {% endfor %} 
-			      </select>
+			      </select> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> product id </label><select class="form-control" id="product_id" name="product_id" placeholder="" required>
+            <label><b> product name: </b></label><select class="form-control" id="product_id" name="product_id" placeholder="" required>
                 {% for product in products %}
                     <option value="{{ product['product_id'] }}"> {{product['name']}}</option> 
                 <!-- End of this for loop -->
                 {% endfor %} 
-			      </select>
+			      </select> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label>  purchase quantity </label> <input type="number" name="purchase_quantity" placeholder="ex. 100" required>
+            <label><b> purchase quantity: </b></label> <input type="number" name="purchase_quantity" placeholder="ex. 100" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label>  purchase price </label> <input type="number" name="purchase_price" placeholder="ex. 323.99" step=".01" required>
+            <label><b> purchase price: </b></label> <input type="number" name="purchase_price" placeholder="ex. 323.99" step=".01" required> <label><em><b> * required </b></em></label>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addPurchaseOrderProduct" value="Add Purchase Order to Product" name="Add_Purchase_Order_Product">

@@ -50,13 +50,13 @@
       <br>
         <fieldset class="fields">
             <input type="hidden" value="{{data[0].purchase_order_id}}" class="form-control" id="purchase_order_id" name="purchase_order_id" required>
-            <label> purchase date </label> <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="{{data[0].purchase_date}}" required>
+            <label><b> purchase date: </b></label> <input type="date" class="form-control" id="purchase_date" name="purchase_date" value="{{data[0].purchase_date}}" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> delivery date </label> <input type="date" class="form-control" id="delivery_date" name="delivery_date" value="{{data[0].delivery_date}}" required>
+            <label><b> delivery date: </b></label> <input type="date" class="form-control" id="delivery_date" name="delivery_date" value="{{data[0].delivery_date}}" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> vendor id </label><select class="form-control" id="vendor_id" name="vendor_id" placeholder="" required>
+            <label><b> vendor name: </b></label><select class="form-control" id="vendor_id" name="vendor_id" placeholder="" required>
                 {% for vendor in vendors %}
                         <!-- If the value iterated homeworld matches the value of the homeworld of person currently Editing, pre-select that option -->
                         {% if vendor['vendor_id'] == data[0].vendor_id %}
@@ -66,7 +66,7 @@
                         {% endif %}
                 <!-- End of this for loop -->
                 {% endfor %} 
-			</select>
+			</select> <label><em><b> * required </b></em></label>
         </fieldset>
         <br>
         <input type="submit" value="Update Purchase Order" name="Update_Purchase_Order" class="btn btn-primary" style="margin:.5rem;">

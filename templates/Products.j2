@@ -18,22 +18,18 @@
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'block';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'none';
 		} else if(dowhat == 'update') {
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'none';
 		} else if(dowhat == 'all') {
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'block';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'block'
 		} else { //by default display browse
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'none';
-            document.getElementById('delete').style.display = 'none';
 		}
 	}
 	function newProduct() {
@@ -86,10 +82,10 @@
 </tr>
 <tbody>
 
-<!-- Now, iterate through every cusomter in Customers -->
+<!-- Now, iterate through every product in Products -->
 {% for item in data %}
 <tr>
-    <!-- Then iterate through every key in the current customer dictionary -->
+    <!-- Then iterate through every key in the current product dictionary -->
     {% for key in item.keys() %}
 
     <!-- Create a <td> element with the value of that key in it -->
@@ -110,16 +106,16 @@
         <legend><strong>Add Product</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> name </label> <input type="text" name="name" placeholder="ex. Candy Dripped Apples" required>
+            <label><b> name: </b></label> <input type="text" name="name" placeholder="ex. Candy Dripped Apples" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> description </label> <input type="text" name="description" placeholder="ex. chocolate dripped chocolate apples 12x12 pack" required>
+            <label><b> description: </b></label> <input type="text" name="description" placeholder="ex. chocolate dripped chocolate apples 12x12 pack" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> quantity in stock </label> <input type="number" name="quantity_in_stock" placeholder="ex. 4" required>
+            <label><b> quantity in stock: </b></label> <input type="number" name="quantity_in_stock" placeholder="ex. 4" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> total dollar value </label> <input type="number" name="total_dollar_value" placeholder="ex. 10.99" step=".01" required>
+            <label><b> total dollar value: </b></label> <input type="number" name="total_dollar_value" placeholder="ex. 10.99" step=".01" required> <label><em><b> * required </b></em></label>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addProduct" value="Add Product" name="Add_Product">

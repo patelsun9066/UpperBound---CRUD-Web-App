@@ -11,36 +11,25 @@
     <script language="JavaScript">
 	function showform(dowhat) {
 		/*
-		 * four DIVS: browse, insert, update
+		 * four DIVS: browse, insert
 		 * this function sets one visible the others not
 		 */
 		if(dowhat == 'insert') {
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'block';
-			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'none';
 		} else if(dowhat == 'update') {
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'none';
-			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'none';
 		} else if(dowhat == 'all') {
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'block';
-			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'block'
 		} else { //by default display browse
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'none';
-			document.getElementById('edit').style.display = 'none';
-            document.getElementById('delete').style.display = 'none';
 		}
 	}
 	function newStatusCode() {
 		showform('insert');
-	}
-	function updateStatusCode(pid) {
-		showform('update');
 	}
 	function browseStatusCodes() {
 		showform('browse');
@@ -89,7 +78,7 @@
 <!-- Now, iterate through every status code in Status Codes -->
 {% for item in data %}
 <tr>
-    <!-- Then iterate through every key in the current customer dictionary -->
+    <!-- Then iterate through every key in the current status code dictionary -->
     {% for key in item.keys() %}
 
     <!-- Create a <td> element with the value of that key in it -->
@@ -110,7 +99,7 @@
         <legend><strong>Add Status Code</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> status </label> <input type="text" name="status" placeholder="ex. Processing" required>
+            <label><b> status: </b></label> <input type="text" name="status" placeholder="ex. Processing" required> <label><em><b> * required </b></em></label>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addStatusCode" value="Add Status Code" name="Add_Status_Code">

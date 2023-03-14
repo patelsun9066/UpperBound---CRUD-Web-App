@@ -18,27 +18,22 @@
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'block';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'none';
 		} else if(dowhat == 'update') {
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'none';
         } else if(dowhat == 'delete') {
 			document.getElementById('browse').style.display = 'none';
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'none';
-			document.getElementById('delete').style.display = 'block';
 		} else if(dowhat == 'all') {
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'block';
 			document.getElementById('edit').style.display = 'block';
-            document.getElementById('delete').style.display = 'block'
 		} else { //by default display browse
 			document.getElementById('browse').style.display = 'block';
 			document.getElementById('insert').style.display = 'none';
 			document.getElementById('edit').style.display = 'none';
-            document.getElementById('delete').style.display = 'none';
 		}
 	}
 	function newSale() {
@@ -46,9 +41,6 @@
 	}
 	function updateSale(pid) {
 		showform('update');
-	}
-    function deleteSale(pid) {
-		showform('delete');
 	}
 	function browseSales() {
 		showform('browse');
@@ -94,10 +86,10 @@
 </tr>
 <tbody>
 
-<!-- Now, iterate through every cusomter in Customers -->
+<!-- Now, iterate through every sale in Sales -->
 {% for item in data %}
 <tr>
-    <!-- Then iterate through every key in the current customer dictionary -->
+    <!-- Then iterate through every key in the current sale dictionary -->
     {% for key in item.keys() %}
 
     <!-- Create a <td> element with the value of that key in it -->
@@ -118,27 +110,27 @@
         <legend><strong>Add Sale</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> sale date </label> <input type="date" name="sale_date" placeholder="" required>
+            <label><b> sale date:</b></label> <input type="date" name="sale_date" placeholder="" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label>  shipping date </label> <input type="date" name="shipping_date" placeholder="" required>
+            <label><b> shipping date: </b></label> <input type="date" name="shipping_date" placeholder="" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> customer id </label><select class="form-control" id="customer_id" name="customer_id" placeholder="" required>
+            <label><b> customer full name: </b></label><select class="form-control" id="customer_id" name="customer_id" placeholder="" required> 
                 {% for customer in customers %}
                     <option value="{{ customer['customer_id'] }}"> {{customer['customer_full_name']}}</option> 
                 <!-- End of this for loop -->
                 {% endfor %} 
-			</select>
+			</select> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> status code id </label><select class="form-control" id="status_code_id" name="status_code_id" placeholder="" required>
+            <label><b> status: </b></label><select class="form-control" id="status_code_id" name="status_code_id" placeholder="">
+                <option value=""></option> 
                 {% for status_code in status_codes %}
                     <option value="{{ status_code['status_code_id'] }}"> {{status_code['status']}}</option> 
                 <!-- End of this for loop -->
                 {% endfor %}
-                <option value=""></option> 
-			</select>
+			</select> <label><em><b> * can be NULL value </b></em></label>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addSale" value="Add Sale" name="Add_Sale">

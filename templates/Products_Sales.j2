@@ -93,10 +93,10 @@
 </tr>
 <tbody>
 
-<!-- Now, iterate through every purchase order to product in Purchase_Orders_to_Products -->
+<!-- Now, iterate through every product to sale in Products_Sales -->
 {% for item in data %}
 <tr>
-    <!-- Then iterate through every key in the current customer dictionary -->
+    <!-- Then iterate through every key in the current product to sales dictionary -->
     {% for key in item.keys() %}
 
     <!-- Create a <td> element with the value of that key in it -->
@@ -118,29 +118,29 @@
         <legend><strong>Add Product to Sale</strong></legend>
         <br>
           <fieldset class="fields">
-            <label> product id </label><select class="form-control" id="product_id" name="product_id" placeholder="" required>
+            <label><b> product name: </b></label><select class="form-control" id="product_id" name="product_id" placeholder="" required>
                 {% for product in products %}
                     <option value="{{ product['product_id'] }}"> {{product['name']}}</option> 
                 <!-- End of this for loop -->
                 {% endfor %} 
-			      </select>
+			      </select> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> sale id </label><select class="form-control" id="sale_id" name="sale_id" placeholder="" required>
+            <label><b> sale date: </b></label><select class="form-control" id="sale_id" name="sale_id" placeholder="" required>
                 {% for sale in sales %}
                     <option value="{{ sale['sale_id'] }}"> {{sale['sale_date']}}</option> 
                 <!-- End of this for loop -->
                 {% endfor %} 
-			      </select>
+			      </select> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label>  quantity sold </label> <input type="number" name="quantity_sold" placeholder="ex. 10" required>
+            <label><b> quantity sold: </b></label> <input type="number" name="quantity_sold" placeholder="ex. 10" required> <label><em><b> * required </b></em></label> 
             <br>
             <br>
-            <label>  unit selling price </label> <input type="number" name="unit_selling_price" placeholder="ex. 5.99" step=".01" required>
+            <label><b> unit selling price: </b></label> <input type="number" name="unit_selling_price" placeholder="ex. 5.99" step=".01" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label>  total price </label> <input type="number" name="total_price" placeholder="ex. 59.90 " step=".01" required>
+            <label><b> total price: </b></label> <input type="number" name="total_price" placeholder="ex. 59.90 " step=".01" required> <label><em><b> * required </b></em></label>
           </fieldset>
           <br>
           <input class="btn" type="submit" id="addProductSale" value="Add Product to Sale" name="Add_Product_Sale">

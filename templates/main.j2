@@ -7,23 +7,37 @@
     <p><b>Upper-Bound is a digitally exclusive retailer whose sole objective is to source local high
         quality products produced by up and coming micro-brands, and ultimately bring these products
         to the attention of a wider consumer audience by distributing them for sale through its
-        ecommerce platform. The following Web-app is designed to help Upper-Bound track, maintain, and report all operational activities related to its Inventory.</b></p>
+        ecommerce platform. The following Web-app is designed to help Upper-Bound track, maintain, and report all operational activities related to its Inventory. Please utilize the following linked entity table pages below to perform CRUD operations</b></p>
     <ul>
-        <li><a href="/Customers"> Customers Page</a></li>
         <br>
-        <li><a href="/Products"> Products Page </a></li>
+        <li><a href="/Customers"><b> Customers Page </b></a> - tracks all customers that have made a purchase on the company's e-commerce
+        platform</li>
+
         <br>
-        <li><a href="/Purchase_Orders"> Purchase Orders Page </a></li>
+        <li><a href="/Products"><b> Products Page </b></a>  - tracks all details of products currently held in inventory, as well as historical products
+        that were discontinued for sale</li>
+
         <br>
-        <li><a href="/Vendors"> Vendors Page</a></li>
+        <li><a href="/Purchase_Orders"><b> Purchase Orders Page </b></a> - tracks all of the inventory purchase orders made by the company from
+        various micro-brands vendors</li>
+
         <br>
-        <li><a href="/Sales"> Sales Page </a></li>
+        <li><a href="/Vendors"><b> Vendors Page </b></a> - tracks all of the companies vendor relationships, particularly the micro-brands the
+        company purchases products from at wholesale prices</li>
+
         <br>
-        <li><a href="/Purchase_Orders_Products"> Purchase Orders to Products Page</a></li>
+        <li><a href="/Sales"><b> Sales Page </b></a> - tracks all current and historical sales made on the company's e-commerce platform</li>
+
         <br>
-        <li><a href="/Products_Sales"> Products to Sales Page</a></li>
+        <li><a href="/Purchase_Orders_Products"><b> Purchase Orders to Products Page </b></a>  - intersection table that facilitates the many to many relationship
+        between the Products entity table and the Purchase_Orders entity table </li>
+
         <br>
-        <li><a href="/Status_Codes"> Status Codes Page</a></li>
+        <li><a href="/Products_Sales"><b> Products to Sales Page </b></a>  - intersection table that facilitates the many to many relationship between the
+        Products entity table and the Sales entity table</li>
+
+        <br>
+        <li><a href="/Status_Codes"><b> Status Codes Page </b></a> - tracks various categories related to order and delivery fulfillment status</li>
     </ul>
 </body>
 </html>

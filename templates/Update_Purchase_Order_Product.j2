@@ -50,7 +50,7 @@
       <br>
         <fieldset class="fields">
             <input type="hidden" value="{{data[0].purchase_order_product_id}}" class="form-control" id="purchase_order_product_id" name="purchase_order_product_id" required>
-            <label> purchase order id </label><select class="form-control" id="purchase_order_id" name="purchase_order_id" placeholder="" required>
+            <label><b> purchase date: </b></label><select class="form-control" id="purchase_order_id" name="purchase_order_id" placeholder="" required>
                 {% for purchase_order in purchase_orders %}
                         <!-- If the value iterated matches the value of the currently Editing, pre-select that option -->
                         {% if purchase_order['purchase_order_id'] == data[0].purchase_order_id %}
@@ -60,10 +60,10 @@
                         {% endif %}
                 <!-- End of this for loop -->
                 {% endfor %} 
-			</select>
+			</select> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> product id </label><select class="form-control" id="product_id" name="product_id" placeholder="" required>
+            <label><b> product name: </b></label><select class="form-control" id="product_id" name="product_id" placeholder="" required>
                 {% for product in products %}
                         <!-- If the value iterated matches the value of the currently Editing, pre-select that option -->
                         {% if product['product_id'] == data[0].product_id %}
@@ -73,13 +73,13 @@
                         {% endif %}
                 <!-- End of this for loop -->
                 {% endfor %}
-			</select>
+			</select> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> purchase quantity </label> <input type="number" class="form-control" id="purchase_quantity" name="purchase_quantity" value="{{data[0].purchase_quantity}}" required>
+            <label><b> purchase quantity: <b></label> <input type="number" class="form-control" id="purchase_quantity" name="purchase_quantity" value="{{data[0].purchase_quantity}}" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> purchase price </label> <input type="number" step=".01" class="form-control" id="purchase_price" name="purchase_price" value="{{data[0].purchase_price}}" required>
+            <label><b> purchase price: </b></label> <input type="number" step=".01" class="form-control" id="purchase_price" name="purchase_price" value="{{data[0].purchase_price}}" required> <label><em><b> * required </b></em></label>
 
         </fieldset>
         <br>

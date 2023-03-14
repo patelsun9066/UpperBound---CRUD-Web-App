@@ -50,16 +50,16 @@
       <br>
         <fieldset class="fields">
             <input type="hidden" value="{{data[0].product_id}}" class="form-control" id="product_id" name="product_id" required>
-            <label> name </label> <input type="text" class="form-control" id="name" name="name" value="{{data[0].name}}" required>
+            <label><b> name: </b></label> <input type="text" class="form-control" id="name" name="name" value="{{data[0].name}}" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> description </label> <input type="text" class="form-control" id="description" name="description" value="{{data[0].description}}" required>
+            <label><b> description: </b></label> <input type="text" class="form-control" id="description" name="description" value="{{data[0].description}}" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> quantity in stock </label> <input type="number" class="form-control" id="quantity_in_stock" name="quantity_in_stock" value="{{data[0].quantity_in_stock}}" required>
+            <label><b> quantity in stock: </b></label> <input type="number" class="form-control" id="quantity_in_stock" name="quantity_in_stock" value="{{data[0].quantity_in_stock}}" required> <label><em><b> * required </b></em></label>
             <br>
             <br>
-            <label> total dollar value </label> <input type="number" step=".01" class="form-control" id="total_dollar_value" name="total_dollar_value" value="{{data[0].total_dollar_value}}" required>
+            <label><b> total dollar value: </b></label> <input type="number" step=".01" class="form-control" id="total_dollar_value" name="total_dollar_value" value="{{data[0].total_dollar_value}}" required> <label><em><b> * required </b></em></label>
         </fieldset>
         <br>
         <input type="submit" value="Update Product" name="Update_Product" class="btn btn-primary" style="margin:.5rem;">
