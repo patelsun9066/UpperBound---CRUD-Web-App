@@ -634,7 +634,7 @@ def Products_Sales_page():
             return redirect("/Products_Sales")
 
 
-# route for update functionality, updating the attributes of a sale in Sales
+# route for update functionality, updating the attributes of a product sale in Product_Sales
 @app.route("/Update_Product_Sale/<int:product_sale_id>", methods=["POST", "GET"])
 def update_product_sale(product_sale_id):
     if request.method == "GET":
