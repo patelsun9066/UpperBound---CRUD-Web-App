@@ -2,6 +2,10 @@ SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
 
+-- Data Definition Queries used to constrcut UpperBound DB entity Tables + Insert Sample Data
+-- Project Title: Upper-Bound
+
+
 -- Create Customers Table 
 
 CREATE OR REPLACE TABLE Customers (

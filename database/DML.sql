@@ -1,4 +1,7 @@
 ----------------------------------
+-- Data Manipulation Queries used to CREATE/READ/UPDATE/DELETE data in UpperBound Web CRUD App.
+-- Project Title: Upper-Bound
+----------------------------------
 
 -- Get all customers 
 Select * from Customers; 
