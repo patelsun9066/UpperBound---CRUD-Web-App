@@ -1,4 +1,4 @@
-# Citation for the following app.py file:
+# Citation for the following app.py file (SCOPE - ALL Code in File):
 # Date: 3/02/2023
 # Adapted from / Based on: Flask Starter App guide shared from course learning materials.
 # Source URL: https://github.com/osu-cs340-ecampus/flask-starter-app
