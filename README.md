@@ -1,3 +1,9 @@
-# UpperBound---CRUD-Web-App
+# UpperBound --- Inventory Management for Small Businesses.
 
-Upper-Bound is a digitally exclusive retailer whose sole objective is to source local high quality products produced by up and coming micro-brands, and ultimately bring these products to the attention of a wider consumer audience by distributing them for sale through its ecommerce platform. The following Web-app is designed to help Upper-Bound track, maintain, and report all operational activities related to its Inventory.
+Upper-Bound is full stack CRUD web application, designed to help small businesses efficiently and effectively track their inventory! 
+
+
+
+<b>Technologies Used:<b>
+# Front-End - JavaScript, HTML, CSS
+# Back-End - Python/Flask, MariaDB (MySQL)
