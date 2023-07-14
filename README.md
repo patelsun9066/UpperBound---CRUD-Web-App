@@ -15,7 +15,7 @@ The following ERD diagram below will give users a better idea of how to utilze t
 
 Screenshot 2023-07-14 183011.png
 
-
+<img width="800" alt="Schema" src="Screenshot 2023-07-14 183011.png">
 
 
 
