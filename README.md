@@ -5,5 +5,5 @@ Upper-Bound is full stack CRUD web application, designed to help small businesse
 
 
 Technologies Used:
-# Front-End - JavaScript, HTML, CSS
-# Back-End - Python/Flask, MariaDB (MySQL)
+Front-End - JavaScript, HTML, CSS
+Back-End - Python/Flask, MariaDB (MySQL)
