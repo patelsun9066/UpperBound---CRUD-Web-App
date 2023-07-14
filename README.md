@@ -10,6 +10,20 @@ To help small business owners we created a inventory management system that can 
 ```npm start``` in the root directory
 
 
+## ERD + Schema
+The following ERD diagram below will give users a better idea of how to utilze this CRUD application to fits their business`s inventory tracking needs.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
